@@ -1,0 +1,6 @@
+<div class="block-name">{{block.name}}</div>
+<div class="block-pane">
+  {{#each block.nodes as |node|}}
+    <NodePc @node={{node}}/>
+  {{/each}}
+</div>
