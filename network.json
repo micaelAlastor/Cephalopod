@@ -1,4 +1,5 @@
 {
+  "ssh": {"login": "pod", "password": "12345"},
   "blocks": [
     {
       "name": "Компуктеры ПРО", "type": "pc", "nodes": [

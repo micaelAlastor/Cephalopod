@@ -42,14 +42,14 @@ body {
   background-color: #466C87;
   color: #fff;
   text-align: center;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
+  //border-bottom-right-radius: 5px;
+  //border-bottom-left-radius: 5px;
   padding: 5px 0;
 
   /* Position the tooltip */
   position: absolute;
   left: -20px;
-  top: 100%;
+  bottom: 100%;
   z-index: 1;
 
   font-size: 12px;
@@ -122,4 +122,29 @@ body {
   background-image: url('/assets/images/shutdown.png');
 }
 
+.block-control {
+  height: 40px;
+  width: 116px;
+  padding: 4px;
+  margin: 10px auto 0 auto;
+}
+.block-control span {
+  display: inline-block;
+  background-position: center;
+  height: 36px;
+  width: 36px;
+  border-radius: 2px;
+}
+.block-control span:hover {
+  background-color: #5782A3;
+}
+.block-wakeup {
+  background-image: url('/assets/images/wakeup.png');
+}
+.block-reboot {
+  background-image: url('/assets/images/reboot.png');
+}
+.block-shutdown {
+  background-image: url('/assets/images/shutdown.png');
+}
 
