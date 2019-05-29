@@ -1,3 +1,6 @@
+body {
+  background-image: linear-gradient(to bottom left, #6396C3, #4D7493);
+}
 .node {
   position: relative;
   display: inline-block;
@@ -90,6 +93,33 @@
 .context-menu {
   background-color: #5782A3;
   color: white;
+}
+
+.context-menu__item {
+  height: 40px;
+  padding: 4px;
+}
+.context-menu__item__label {
+  position: relative;
+  height: 32px;
+  padding: 0 0 0 36px;
+}
+.context-menu__item__icon {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  height: 32px;
+  width: 32px;
+}
+.item_wakeup .context-menu__item__icon {
+  background-image: url('/assets/images/wakeup.png');
+}
+.item_reboot .context-menu__item__icon {
+  background-image: url('/assets/images/reboot.png');
+}
+.item_shutdown .context-menu__item__icon {
+  background-image: url('/assets/images/shutdown.png');
 }
 
 

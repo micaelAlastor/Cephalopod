@@ -33,7 +33,7 @@
     "ember-cli-sri": "^2.1.1",
     "ember-cli-template-lint": "^1.0.0-beta.1",
     "ember-cli-uglify": "^2.1.0",
-    "ember-context-menu": "^0.4.3",
+    "ember-context-menu": "git+https://github.com/micaelAlastor/ember-context-menu.git",
     "ember-data": "~3.9.0",
     "ember-export-application-global": "^2.0.0",
     "ember-fetch": "^6.5.1",

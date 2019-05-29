@@ -13,7 +13,8 @@ export default Component.extend(contextMenuMixin, {
   contextItems: [
     {
       label: 'wakeup',
-      //icon: 'search',
+      icon: true,
+      itemClassName: 'item_wakeup',
       action(selection, details, event) {
         console.log('wakeup');
         $.post('/api/wakeup', selection[0], function (response) {
@@ -23,11 +24,15 @@ export default Component.extend(contextMenuMixin, {
     },
     {
       label: 'reboot',
+      icon: true,
+      itemClassName: 'item_reboot',
       action(selection, details, event) { /* do something */
       }
     },
     {
       label: 'shutdown',
+      icon: true,
+      itemClassName: 'item_shutdown',
       action(selection, details, event) { /* do something */
       }
     }
