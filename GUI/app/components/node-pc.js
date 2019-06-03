@@ -6,7 +6,7 @@ export default Component.extend(contextMenuMixin, {
   classNames: ['node', 'node-pc'],
   classNameBindings: ['isEnabled:node-enabled:node-disabled'],
   isEnabled: computed('node.enabled', function () {
-    return '$node.enabled'
+    return this.get('node.enabled');
   }),
   node: null,
 

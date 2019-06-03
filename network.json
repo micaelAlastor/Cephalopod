@@ -11,15 +11,15 @@
     {
       "name": "Компуктеры СИВО", "type": "pc", "nodes": [
       {"name": "COMP11", "ip": "127.0.1.1", "mac": "10:7B:44:7A:C5:5A", "enabled": true},
-      {"name": "COMP12", "ip": "127.0.1.2", "mac": "10:7B:44:7A:C5:5B", "enabled": false},
-      {"name": "COMP13", "ip": "127.0.1.3", "mac": "10:7B:44:7A:C5:5C", "enabled": false}
+      {"name": "COMP12", "ip": "333.0.1.2", "mac": "10:7B:44:7A:C5:5B", "enabled": false},
+      {"name": "COMP13", "ip": "129.0.1.3", "mac": "10:7B:44:7A:C5:5C", "enabled": true}
     ]
     },
     {
       "name": "Проекторы СИВО", "type": "proj", "nodes": [
-      {"name": "proj1", "ip": "127.0.2.1", "enabled": false},
-      {"name": "proj2", "ip": "127.0.2.2", "enabled": false},
-      {"name": "proj3", "ip": "127.0.2.3", "enabled": false}
+      {"name": "proj1", "ip": "127.0.2.1", "enabled": true},
+      {"name": "proj2", "ip": "127.0.2.2", "enabled": true},
+      {"name": "proj3", "ip": "127.0.2.3", "enabled": true}
     ]
     }
   ]

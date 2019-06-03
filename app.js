@@ -7,13 +7,18 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var networkRouter = require('./routes/network.js');
 
+//icmp ping
 var netPing = require("net-ping");
 var netPingSession = netPing.createSession();
+
+//web sockets
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({ port: 8080 });
 
 var app = express();
 
 ssh = {};
-blocks = {};
+blocks = [];
 
 //wake on lan
 var wol = require('wake_on_lan');
@@ -31,19 +36,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 //api routes
 app.use('/api/network', networkRouter);
-/*app.get('/api/network', function(req, res) {
-  let rawdata = fs.readFileSync('network.json');
-  let networkScheme = JSON.parse(rawdata);
-  console.log(networkScheme);
-  app.set('networkScheme', networkScheme);
-  res.json(networkScheme);
-});*/
+
 app.post('/api/wakeup', function(req, res) {
   console.log('wake on lan: ');
   let node = req.body;
   console.log(node);      // your JSON
   //console.log('ssh is ', ssh);      // your JSON
   wol.wake(node.mac, {address: node.ip});
+  //
+  wss.clients.forEach(function each(ws) {
+
+  });
+  //
   res.json(node);
 });
 
@@ -66,19 +70,19 @@ app.use(function(err, req, res, next) {
 
 
 //ws stuff here
-const WebSocket = require('ws');
-
 function noop() {}
 
 function heartbeat() {
   this.isAlive = true;
 }
 
-const wss = new WebSocket.Server({ port: 8080 });
-
 wss.on('connection', function connection(ws) {
   ws.isAlive = true;
   ws.on('pong', heartbeat);
+  //
+  ws.on('message', function (message) {
+    console.log('received: %s', message)
+  });
 });
 
 const interval = setInterval(function wsPing() {
@@ -96,11 +100,11 @@ const netPingInterval = setInterval(function netPingFunc() {
       block.nodes.forEach(function eachNode(node){
         netPingSession.pingHost (node.ip, function (error, target) {
           if (error)
-            if (error instanceof ping.RequestTimedOutError){
+            if (error instanceof netPing.RequestTimedOutError){
               console.log (target + ": Not alive");
-              /*wss.clients.forEach(function each(ws) {
-                ws.send('Hi there, I am a WebSocket server');
-              });*/
+              wss.clients.forEach(function each(ws) {
+                ws.send(target + " is a dead host");
+              });
             }
             else
               console.log (target + ": " + error.toString ());

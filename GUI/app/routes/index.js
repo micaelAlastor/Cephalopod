@@ -3,26 +3,17 @@ import Route from '@ember/routing/route';
 //import EmberObject from '@ember/object';
 import {inject as service} from '@ember/service'
 import {on} from '@ember/object/evented';
+import Scheme from '../models/scheme';
+//import Block from '../models/block';
 
 export default Route.extend({
   websockets: service(),
   socketRef: null,
 
-  /*activate() {
-    const socket = this.websockets.socketFor('ws://localhost:8080/');
-    socket.on('open', this.myOpenHandler, this);
-    socket.on('message', this.myMessageHandler, this);
-    socket.on('close', this.myCloseHandler, this);
-
-    this.set('socketRef', socket);
-    console.log('activate');
-  },*/
-
-
   startWS: on('activate', function () {
     console.log('start web socket');
 
-    const socket = this.websockets.socketFor('ws://localhost:8080/');
+    const socket = this.websockets.socketFor('ws://localhost:8080');
     socket.on('open', this.myOpenHandler, this);
     socket.on('message', this.myMessageHandler, this);
     socket.on('close', this.myCloseHandler, this);
@@ -47,6 +38,8 @@ export default Route.extend({
 
   myMessageHandler(event) {
     console.log(`Message: ${event.data}`);
+    // sending a send event to websocket server
+    this.socketRef.send('connected');
   },
 
   myCloseHandler(event) {
@@ -58,9 +51,16 @@ export default Route.extend({
     }
   },
 
+  processModel(json) {
+    let scheme = Scheme.create({});
+    scheme.acceptJson(json);
+    return scheme;
+  },
+
   model() {
+    let self = this;
     return $.getJSON('/api/network').then(function (response) {
-      return response;
+      return self.processModel(response);
     });
   }
 });

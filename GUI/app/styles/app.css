@@ -1,5 +1,6 @@
 body {
   background-image: linear-gradient(to bottom left, #6396C3, #4D7493);
+  font-family: "PTAstraSans-Regular","PT Sans",sans-serif;
 }
 .node {
   position: relative;
@@ -95,6 +96,10 @@ body {
   color: white;
 }
 
+.context-menu--left .context-menu__item {
+  padding: 4px;
+}
+
 .context-menu__item {
   height: 40px;
   padding: 4px;
@@ -123,28 +128,38 @@ body {
 }
 
 .block-control {
+  position: relative;
   height: 40px;
-  width: 116px;
-  padding: 4px;
+  width: 108px;
+  padding: 0;
   margin: 10px auto 0 auto;
 }
 .block-control span {
-  display: inline-block;
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
   background-position: center;
+  background-repeat: no-repeat;
   height: 36px;
   width: 36px;
+  border-width: 0;
+  border-color: transparent;
   border-radius: 2px;
 }
 .block-control span:hover {
   background-color: #5782A3;
 }
 .block-wakeup {
+  left: 0;
   background-image: url('/assets/images/wakeup.png');
 }
 .block-reboot {
+  left: 36px;
   background-image: url('/assets/images/reboot.png');
 }
 .block-shutdown {
+  left: 72px;
   background-image: url('/assets/images/shutdown.png');
 }
 
