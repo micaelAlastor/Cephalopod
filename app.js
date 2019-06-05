@@ -15,6 +15,9 @@ var netPingSession = netPing.createSession();
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({ port: 8080 });
 
+//ssh
+
+
 var app = express();
 
 ssh = {};
@@ -42,11 +45,24 @@ app.post('/api/wakeup', function(req, res) {
   let node = req.body;
   console.log(node);      // your JSON
   //console.log('ssh is ', ssh);      // your JSON
-  wol.wake(node.mac, {address: node.ip});
+  // {address: node.ip}
+  wol.wake(node.mac);
   //
-  wss.clients.forEach(function each(ws) {
+  res.json(node);
+});
 
-  });
+app.post('/api/reboot', function(req, res) {
+  console.log('reboot: ');
+  let node = req.body;
+  console.log(node);      // your JSON
+  //
+  res.json(node);
+});
+
+app.post('/api/shutdown', function(req, res) {
+  console.log('shutdown: ');
+  let node = req.body;
+  console.log(node);      // your JSON
   //
   res.json(node);
 });

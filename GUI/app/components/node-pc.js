@@ -17,7 +17,7 @@ export default Component.extend(contextMenuMixin, {
       itemClassName: 'item_wakeup',
       action(selection, details, event) {
         console.log('wakeup');
-        $.post('/api/wakeup', selection[0], function (response) {
+        $.post('/api/wakeup', selection[0].toJSON(), function (response) {
           // Do something with the request
         }, 'json');
       }
@@ -26,14 +26,22 @@ export default Component.extend(contextMenuMixin, {
       label: 'reboot',
       icon: true,
       itemClassName: 'item_reboot',
-      action(selection, details, event) { /* do something */
+      action(selection, details, event) {
+        console.log('reboot');
+        $.post('/api/reboot', selection[0], function (response) {
+          // Do something with the request
+        }, 'json');
       }
     },
     {
       label: 'shutdown',
       icon: true,
       itemClassName: 'item_shutdown',
-      action(selection, details, event) { /* do something */
+      action(selection, details, event) {
+        console.log('shutdown');
+        $.post('/api/shutdown', selection[0], function (response) {
+          // Do something with the request
+        }, 'json');
       }
     }
   ],
