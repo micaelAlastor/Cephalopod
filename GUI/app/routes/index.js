@@ -1,10 +1,7 @@
 import Route from '@ember/routing/route';
-//import fetch from 'fetch';
-//import EmberObject from '@ember/object';
+import Scheme from '../models/scheme';
 import {inject as service} from '@ember/service'
 import {on} from '@ember/object/evented';
-import Scheme from '../models/scheme';
-//import Block from '../models/block';
 
 export default Route.extend({
   websockets: service(),
@@ -38,17 +35,15 @@ export default Route.extend({
 
   myMessageHandler(event) {
     console.log(`Message: ${event.data}`);
+    //
+    this.controller.wsMessageHandler(event);
+    //
     // sending a send event to websocket server
     this.socketRef.send('connected');
   },
 
   myCloseHandler(event) {
     console.log(`On close event has been called: ${event}`);
-  },
-
-  actions: {
-    didTransition() {
-    }
   },
 
   processModel(json) {

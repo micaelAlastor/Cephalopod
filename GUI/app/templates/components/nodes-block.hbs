@@ -1,11 +1,19 @@
 <div class="block-name">{{block.name}}</div>
 <div class="block-pane">
-  {{#each block.nodes as |node|}}
-    <NodePc @node={{node}}/>
-  {{/each}}
-  <div class="block-control">
-    <span class="block-wakeup"></span>
-    <span class="block-reboot"></span>
-    <span class="block-shutdown"></span>
-  </div>
+  {{#if block.pc}}
+    {{#each block.nodes as |node|}}
+      <NodePc @node={{node}}/>
+    {{/each}}
+  {{else if block.pj}}
+    {{#each block.nodes as |node|}}
+      <NodePj @node={{node}}/>
+    {{/each}}
+  {{/if}}
+  {{#if block.pc}}
+    <div class="block-control">
+      <span class="block-wakeup"></span>
+      <span class="block-reboot"></span>
+      <span class="block-shutdown"></span>
+    </div>
+  {{/if}}
 </div>

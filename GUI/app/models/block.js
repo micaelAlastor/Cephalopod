@@ -5,11 +5,17 @@ import Node from "./node";
 export default EmberObject.extend({
   name: '',
   type: '',
+  pc: false,
+  pj: false,
   nodes: null,
 
   acceptJson(json) {
     this.set('name', json.name);
     this.set('type', json.type);
+    if(json.type === 'pc')
+      this.set('pc', true);
+    if(json.type === 'pj')
+      this.set('pj', true);
     this.set('nodes', A());
 
     let self = this;
@@ -22,5 +28,6 @@ export default EmberObject.extend({
 
   addNode(node) {
     this.nodes.pushObject(node);
+    this.scheme.nodes.pushObject(node);
   }
 });

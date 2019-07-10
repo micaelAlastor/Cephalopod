@@ -9,6 +9,9 @@ export default EmberObject.extend({
       this.set('mac', json.mac);
       this.set('enabled', json.enabled);
     }
+    if (this.type === 'pj') {
+      this.set('powerState', json.powerState);
+    }
   },
   toJSON(){
     return this.getProperties('name', 'ip', 'mac', 'enabled');

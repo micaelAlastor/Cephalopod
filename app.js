@@ -31,7 +31,7 @@ var pjlink = require('pjlink');
 var app = express();
 
 ssh = {};
-blocks = [];
+localNetwork = {blocks:[]};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -109,12 +109,11 @@ app.post('/api/shutdown', function(req, res) {
 
 app.post('/api/pjpoweron', function(req, res) {
   console.log('pjlink poweron: ');
-  let node = req.body;
-  console.log(node);      // your JSON
+  let ip = req.body.ip;
+  let node = localNetwork.findNodeByIP(ip);
+  //console.log(node);      // your JSON
   //
-  if(!node.beamer){
-    node.beamer = new pjlink(node.ip, 10000, "JBMIAProjectorLink");
-  }
+
   node.beamer.powerOn(function(err){
     if(err){
       console.log('error turning on', err);
@@ -125,34 +124,18 @@ app.post('/api/pjpoweron', function(req, res) {
   res.json(node);
 });
 
-/*app.post('/api/reboot', function(req, res) {
-  console.log('reboot: ');
-  let node = req.body;
-  console.log(node);      // your JSON
-  //
-  sequest('fma@' + node.ip,
-      {
-        command: 'sudo shutdown --reboot now "System goes on reboot now"',
-        username: 'fma',
-        password: 'lordofether'
-      },
-      function (e, stdout) {
-        if (e) {
-          console.log(e);
-          //throw e;
-        }
-        console.log(stdout.split('\n'))
-      });
-  //
-  res.json(node);
-});*/
-
 app.post('/api/pjpoweroff', function(req, res) {
   console.log('shutdown: ');
-  let node = req.body;
-  console.log(node);      // your JSON
+  let ip = req.body.ip;
+  let node = localNetwork.findNodeByIP(ip);
+  //console.log(node);      // your JSON
   //
-
+  node.beamer.powerOff(function(err){
+    if(err){
+      console.log('error turning off', err);
+      return;
+    }
+  });
   //
   res.json(node);
 });
@@ -200,17 +183,14 @@ const interval = setInterval(function wsPing() {
 }, 30000);
 
 const netPingInterval = setInterval(function netPingFunc() {
-  blocks.forEach(function eachBlock(block){
+  localNetwork.blocks.forEach(function eachBlock(block){
     if(block.type === "pc"){
       block.nodes.forEach(function eachPC(pcNode){
         netPingSession.pingHost (pcNode.ip, function (error, target) {
           if (error)
             if (error instanceof netPing.RequestTimedOutError){
-              console.log (target + ": Not alive");
+              console.log (target);
               pcNode.enabled = false;
-              wss.clients.forEach(function each(ws) {
-                ws.send(target + " is a dead host");
-              });
             }
             else
               console.log (target + ": " + error.toString ());
@@ -218,6 +198,9 @@ const netPingInterval = setInterval(function netPingFunc() {
             pcNode.enabled = true;
             console.log (target + ": Alive");
           }
+          wss.clients.forEach(function each(ws) {
+            ws.send(JSON.stringify(pcNode));
+          });
         });
       })
     }
@@ -229,7 +212,7 @@ const netPingInterval = setInterval(function netPingFunc() {
          * 1 /	pjlink.POWER.ON
          * 2 /	pjlink.POWER.COOLING_DOWN
          * 3 /	pjlink.POWER.WARMING_UP
-         **/
+       **/
         pjNode.beamer.getPowerState(function(err, state){
           if(err){
             console.log(err);
@@ -237,7 +220,7 @@ const netPingInterval = setInterval(function netPingFunc() {
           }
           pjNode.powerState = state;
           wss.clients.forEach(function each(ws) {
-            ws.send(pjNode + " state is " + state);
+            ws.send(JSON.stringify(pjNode));
           });
           console.log('power', err, state);
         });
