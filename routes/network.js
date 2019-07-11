@@ -4,7 +4,7 @@ var router = express.Router();
 var pjlink = require('pjlink');
 
 const fs = require('fs');
-
+const find = require('local-devices');
 
 /* GET home page. */
 router.get('/', function(req, res) {;
@@ -17,7 +17,11 @@ router.get('/', function(req, res) {;
 
 	localNetwork.blocks.forEach(function(eachBlock){
 		if(eachBlock.type === "pc"){
-
+			eachBlock.nodes.forEach(function(eachPc){
+				find(eachPc.ip).then(device=>{
+					eachPc.mac = device.mac;
+				})
+			})
 		}
 		else if(eachBlock.type === "pj"){
 			eachBlock.nodes.forEach(function(eachProj){

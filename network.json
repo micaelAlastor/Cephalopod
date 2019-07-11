@@ -3,12 +3,12 @@
   "blocks": [
     {
       "name": "Тестовые компы", "type": "pc", "nodes": [
-      {"name": "COMP1", "ip": "10.25.83.127", "mac": "10:7B:44:7A:C5:5D", "enabled": false}
+      {"name": "COMP1", "ip": "10.25.83.127"}
     ]
     },
     {
       "name": "Тестовые про", "type": "pj", "nodes": [
-      {"name": "proj1", "ip": "10.25.81.65", "enabled": false}
+      {"name": "proj1", "ip": "10.25.81.65"}
     ]
     }
   ]
