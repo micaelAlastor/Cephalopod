@@ -1,0 +1,8 @@
+<div class="block-name">{{block.name}}</div>
+<div class="block-pane">
+  <button class="config_add" {{action "addAwpPc"}}>Добавить ПК</button>
+  <button class="config_add" {{action "addAwpPj"}}>Добавить проекторы</button>
+  {{#each block.awps as |awp|}}
+    <AwpEditor @awp={{awp}}/>
+  {{/each}}
+</div>

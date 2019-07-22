@@ -1,0 +1,6 @@
+<button class="config_add" {{action "addBlock"}}>Добавить модуль</button>
+<button class="config_add" {{action "saveConfig"}}>Сохранить</button>
+{{#each this.model as |block|}}
+  <BlockEditor @block={{block}} @addAwpPc="addAwpPc" @addAwpPj="addAwpPj"/>
+{{/each}}
+{{outlet}}

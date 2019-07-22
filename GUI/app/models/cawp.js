@@ -1,0 +1,16 @@
+import DS from 'ember-data';
+const { Model } = DS;
+import {computed} from '@ember/object';
+
+export default Model.extend({
+  block: DS.belongsTo('cblock'),
+  name: DS.attr('string', {defaultValue: 'awp'}),
+  nodestype: DS.attr('string', {defaultValue: 'pc'}),
+  pc: computed('nodestype', function() {
+    return this.nodestype === 'pc';
+  }),
+  pj: computed('nodestype', function() {
+    return this.nodestype === 'pj';
+  }),
+  nodes: DS.hasMany('cnode', {async: true})
+});
