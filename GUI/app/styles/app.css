@@ -87,6 +87,8 @@ body {
 .block-pane {
   position: relative;
   display: inline-block;
+  min-height: 50px;
+  min-width: 200px;
   padding: 10px;
   background-color: #466C87;
 }
@@ -161,5 +163,16 @@ body {
 .block-shutdown {
   left: 72px;
   background-image: url('/assets/images/shutdown.png');
+}
+
+/*config*/
+.config_add {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #02425E;
+  color: white;
+  text-align: center;
 }
 

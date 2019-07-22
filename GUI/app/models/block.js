@@ -10,6 +10,7 @@ export default EmberObject.extend({
   nodes: null,
 
   acceptJson(json) {
+    this.set('id', json.id);
     this.set('name', json.name);
     this.set('type', json.type);
     if(json.type === 'pc')

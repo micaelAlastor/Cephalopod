@@ -22,7 +22,7 @@ export default EmberObject.extend({
 
   acceptNodeChanges(json) {
     let found = this.nodes.find(function(updatedNode){
-      return updatedNode.get('ip') === json.ip;
+      return updatedNode.get('id') === json.id;
     });
     if(found){
       //console.log('found');

@@ -11,9 +11,9 @@
   {{/if}}
   {{#if block.pc}}
     <div class="block-control">
-      <span class="block-wakeup"></span>
-      <span class="block-reboot"></span>
-      <span class="block-shutdown"></span>
+      <span class="block-wakeup" role="button" {{action "blockWakeup" block}}></span>
+      <span class="block-reboot" role="button" {{action "blockReboot"}}></span>
+      <span class="block-shutdown" role="button" {{action "blockShutdown"}}></span>
     </div>
   {{/if}}
 </div>

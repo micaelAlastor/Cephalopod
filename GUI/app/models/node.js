@@ -3,6 +3,7 @@ import EmberObject from '@ember/object';
 export default EmberObject.extend({
 
   acceptJson(json) {
+    this.set('id', json.id);
     this.set('name', json.name);
     this.set('ip', json.ip);
     if (this.type === 'pc') {
