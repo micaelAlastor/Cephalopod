@@ -1,12 +1,12 @@
 <div class="block-name">
   <Input @value={{this.awp.name}} @change={{action 'saveAwp'}}/>
-</div>
-<div class="block-pane">
   {{#if this.awp.pc}}
     <button class="config_button" {{action "addPc"}}>Добавить компьютер</button>
   {{else if this.awp.pj}}
     <button class="config_button" {{action "addPj"}}>Добавить проектор</button>
   {{/if}}
+</div>
+<div class="block-pane">
   {{#each awp.nodes as |node|}}
     {{#if this.awp.pc}}
       <PcEditor @node={{node}}/>

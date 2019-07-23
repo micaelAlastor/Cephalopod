@@ -1,6 +1,10 @@
-<button class="config_button" {{action "addBlock"}}>Добавить модуль</button>
-<button class="config_button" {{action "saveConfig"}}>Сохранить</button>
-{{#each this.model as |block|}}
-  <BlockEditor @block={{block}} @addAwpPc="addAwpPc" @addAwpPj="addAwpPj" @addPc="addPc" @addPj="addPj"/>
-{{/each}}
-{{outlet}}
+<div class="config-editor">
+  <button class="config_button" {{action "saveConfig"}}>Сохранить</button>
+  <button class="config_button" {{action "addBlock"}}>Добавить модуль</button>
+  <div class="config-editor-pane">
+    {{#each this.model as |block|}}
+      <BlockEditor @block={{block}} @addAwpPc="addAwpPc" @addAwpPj="addAwpPj" @addPc="addPc" @addPj="addPj"/>
+    {{/each}}
+    {{outlet}}
+  </div>
+</div>

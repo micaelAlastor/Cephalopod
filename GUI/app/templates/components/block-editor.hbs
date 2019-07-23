@@ -1,9 +1,9 @@
 <div class="block-name">
   <Input @value={{this.block.name}} @change={{action 'saveBlock'}}/>
-</div>
-<div class="block-pane">
   <button class="config_button" {{action "addAwpPc"}}>Добавить АРМ</button>
   <button class="config_button" {{action "addAwpPj"}}>Добавить проекторы</button>
+</div>
+<div class="block-pane">
   {{#each block.awps as |awp|}}
     <AwpEditor @awp={{awp}}  @addPc="addPc" @addPj="addPj"/>
   {{/each}}

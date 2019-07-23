@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['nodes-block'],
+  classNames: ['awp-editor'],
   actions: {
     saveAwp: function() {
       this.awp.save();

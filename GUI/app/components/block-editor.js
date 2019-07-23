@@ -1,7 +1,7 @@
 import Component from '@ember/component';
 
 export default Component.extend({
-  classNames: ['nodes-block'],
+  classNames: ['block-editor'],
   actions: {
     saveBlock: function() {
       this.block.save();
