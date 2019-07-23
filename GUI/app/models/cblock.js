@@ -11,5 +11,5 @@ export default Model.extend({
   pj: computed('nodestype', function() {
     return this.nodestype === 'pj';
   }),
-  awps: DS.hasMany('cawp', {async: true})
+  awps: DS.hasMany('cawp', {async: false})
 });

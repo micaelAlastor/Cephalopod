@@ -15,5 +15,6 @@ router.put('/api/configs/:_id', api.config.postConfig);
 router.get('/api/cblocks', api.blocks.getBlocks);
 router.post('/api/cblocks', api.blocks.postBlock);
 router.post('/api/cawps', api.awps.postAwp);
+router.post('/api/cnodes', api.nodes.postNode);
 
 module.exports = router;

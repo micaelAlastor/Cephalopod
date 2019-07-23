@@ -1,1 +1,1 @@
-{"blocks":[{"name":"module","nodestype":"pc","id":"51922c1d-24da-4b93-83e7-65a20e360e5a","awps":[]}]}
+{"blocks":[{"name":"module","nodestype":"pc","awps":[{"name":"awp","nodestype":"pc","block":"217364c7-0974-49bd-87d8-ef21f49c47bd","nodes":[{"name":"Node","ip":"000.000.000.000","mac":"-----","powerstate":"0","block":"217364c7-0974-49bd-87d8-ef21f49c47bd","awp":"d89a9246-9a0d-4758-a203-bd3219dc3c40","id":"a2542b0f-db46-4bf2-9eff-7fc59954c242"}],"id":"d89a9246-9a0d-4758-a203-bd3219dc3c40"}],"id":"217364c7-0974-49bd-87d8-ef21f49c47bd"}]}

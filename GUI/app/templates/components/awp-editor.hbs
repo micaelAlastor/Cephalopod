@@ -1,4 +1,15 @@
 <div class="block-name">{{awp.name}}</div>
 <div class="block-pane">
-  <button class="config_add" {{action "addNode"}}>Добавить node</button>
+  {{#if this.awp.pc}}
+    <button class="config_button" {{action "addPc"}}>Добавить компьютер</button>
+  {{else if this.awp.pj}}
+    <button class="config_button" {{action "addPj"}}>Добавить проектор</button>
+  {{/if}}
+  {{#each awp.nodes as |node|}}
+    {{#if this.awp.pc}}
+      <PcEditor @node={{node}}/>
+    {{else if this.awp.pj}}
+      <PjEditor @node={{node}}/>
+    {{/if}}
+  {{/each}}
 </div>

@@ -19,9 +19,13 @@ export default Controller.extend({
       let awp = this.store.createRecord('cawp', {nodestype: 'pj', block: block});
       awp.save();
     },
-    addNode: function (awp) {
-      let node = this.store.createRecord('cnode', {awp: awp});
-      node.save();
+    addPc: function (awp) {
+      let pc = this.store.createRecord('cnode', {awp: awp, block: awp.block});
+      pc.save();
+    },
+    addPj: function (awp) {
+      let pj = this.store.createRecord('cnode', {awp: awp, block: awp.block});
+      pj.save();
     },
   }
 });

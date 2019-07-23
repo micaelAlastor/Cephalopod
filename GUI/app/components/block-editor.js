@@ -8,6 +8,12 @@ export default Component.extend({
     },
     addAwpPj: function () {
       this.sendAction('addAwpPj', this.get('block'));
+    },
+    addPc: function (awp) {
+      this.sendAction('addPc', awp);
+    },
+    addPj: function (awp) {
+      this.sendAction('addPj', awp);
     }
   }
 });

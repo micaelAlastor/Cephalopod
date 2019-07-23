@@ -3,7 +3,7 @@ const { Model } = DS;
 import {computed} from '@ember/object';
 
 export default Model.extend({
-  block: DS.belongsTo('cblock'),
+  block: DS.belongsTo('cblock', {async: false}),
   name: DS.attr('string', {defaultValue: 'awp'}),
   nodestype: DS.attr('string', {defaultValue: 'pc'}),
   pc: computed('nodestype', function() {
@@ -12,5 +12,5 @@ export default Model.extend({
   pj: computed('nodestype', function() {
     return this.nodestype === 'pj';
   }),
-  nodes: DS.hasMany('cnode', {async: true})
+  nodes: DS.hasMany('cnode', {async: false})
 });

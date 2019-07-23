@@ -60,9 +60,30 @@ const API = module.exports.API = {
             if (newAwp) {
                 newAwp.id = uuidv4();
                 newAwp.nodes = [];
-                //localNetwork.blocks.push(newAwp);
+                let block = localNetwork.blocks.find(function(block){
+                    return block.id === newAwp.block;
+                });
+                if(block)
+                    block.awps.push(newAwp);
             }
             res.send({cawps: newAwp});
+        }
+    },
+    nodes: {
+        postNode: function (req, res, next) {
+            let newNode = req.body.cnode;
+            if (newNode) {
+                newNode.id = uuidv4();
+                let block = localNetwork.blocks.find(function(block){
+                    return block.id === newNode.block;
+                });
+                let awp = block.awps.find(function(awp){
+                    return awp.id === newNode.awp;
+                });
+                if(awp)
+                    awp.nodes.push(newNode);
+            }
+            res.send({cnodes: newNode});
         }
     }
 };
