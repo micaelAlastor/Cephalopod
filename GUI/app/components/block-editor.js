@@ -3,6 +3,9 @@ import Component from '@ember/component';
 export default Component.extend({
   classNames: ['nodes-block'],
   actions: {
+    saveBlock: function() {
+      this.block.save();
+    },
     addAwpPc: function () {
       this.sendAction('addAwpPc', this.get('block'));
     },

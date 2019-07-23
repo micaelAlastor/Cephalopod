@@ -7,7 +7,7 @@ export default Model.extend({
   awp: DS.belongsTo('cawp', {async: false}),
   name: DS.attr('string', {defaultValue: 'Node'}),
   ip: DS.attr('string', {defaultValue: '000.000.000.000'}),
-  mac: DS.attr('string', {defaultValue: '-----'}),
+  mac: DS.attr('string', {defaultValue: '00:00:00:00:00:00'}),
   powerstate: DS.attr('string', {defaultValue: '0'}),
   pc: computed('awp.nodestype', function() {
     return this.awp.nodestype === 'pc';

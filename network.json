@@ -1,1 +1,38 @@
-{"blocks":[{"name":"module","nodestype":"pc","awps":[{"name":"awp","nodestype":"pc","block":"217364c7-0974-49bd-87d8-ef21f49c47bd","nodes":[{"name":"Node","ip":"000.000.000.000","mac":"-----","powerstate":"0","block":"217364c7-0974-49bd-87d8-ef21f49c47bd","awp":"d89a9246-9a0d-4758-a203-bd3219dc3c40","id":"a2542b0f-db46-4bf2-9eff-7fc59954c242"}],"id":"d89a9246-9a0d-4758-a203-bd3219dc3c40"}],"id":"217364c7-0974-49bd-87d8-ef21f49c47bd"}]}
+{
+  "blocks": [
+    {
+      "name": "Модуль НК",
+      "nodestype": "pc",
+      "awps": [
+        {
+          "name": "ИМС",
+          "nodestype": "pc",
+          "block": "3e181c28-e304-4fd6-a6aa-177a56dfafce",
+          "nodes": [
+            {
+              "name": "Node123",
+              "ip": "10.25.83.137",
+              "mac": "40:8d:5c:4a:80:72",
+              "powerstate": "0",
+              "block": "3e181c28-e304-4fd6-a6aa-177a56dfafce",
+              "awp": "307ebe36-be02-4ca6-9114-f445295c9c01",
+              "id": "e1144672-3555-41f4-9562-1d706842606f",
+              "enabled": true
+            },
+            {
+              "name": "Компьютер",
+              "ip": "10.25.83.141",
+              "mac": "00:00:00:00:00:00",
+              "powerstate": "0",
+              "block": "3e181c28-e304-4fd6-a6aa-177a56dfafce",
+              "awp": "307ebe36-be02-4ca6-9114-f445295c9c01",
+              "id": "a75127d2-5b7e-482f-800b-1aef4c96244b"
+            }
+          ],
+          "id": "307ebe36-be02-4ca6-9114-f445295c9c01"
+        }
+      ],
+      "id": "3e181c28-e304-4fd6-a6aa-177a56dfafce"
+    }
+  ]
+}

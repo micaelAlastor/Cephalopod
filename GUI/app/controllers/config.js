@@ -20,11 +20,11 @@ export default Controller.extend({
       awp.save();
     },
     addPc: function (awp) {
-      let pc = this.store.createRecord('cnode', {awp: awp, block: awp.block});
+      let pc = this.store.createRecord('cnode', {name: 'Компьютер', awp: awp, block: awp.block});
       pc.save();
     },
     addPj: function (awp) {
-      let pj = this.store.createRecord('cnode', {awp: awp, block: awp.block});
+      let pj = this.store.createRecord('cnode', {name: 'Проектор', awp: awp, block: awp.block});
       pj.save();
     },
   }

@@ -11,7 +11,7 @@ const netPing = require("net-ping");
 var netPingSession = netPing.createSession();
 
 //ip to mac
-const find = require('local-devices');
+//const find = require('local-devices');
 
 //web sockets
 const WebSocket = require('ws');

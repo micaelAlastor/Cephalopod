@@ -177,3 +177,21 @@ body {
   text-align: center;
 }
 
+.nodeEditor {
+  position: relative;
+  display: inline-block;
+  height: 70px;
+  width: 150px;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #02425E;
+  color: white;
+}
+
+.nodeEditor input {
+  display: inline-block;
+  width: 120px;
+}
