@@ -4,9 +4,17 @@ import contextMenuMixin from 'ember-context-menu';
 
 export default Component.extend(contextMenuMixin, {
   classNames: ['node', 'node-pj'],
-  classNameBindings: ['isEnabled:node-enabled:node-disabled'],
+  classNameBindings: ['isEnabled:node-enabled:node-disabled', 'powerstateOn:pj-enabled:pj-disabled'],
   isEnabled: computed('node.enabled', function () {
     return this.get('node.enabled');
+  }),
+  powerstateOn: computed('node.powerstate', function () {
+    let powerstate = this.get('node.powerstate');
+    if (powerstate === '0') {
+      return false;
+    } else {
+      return true;
+    }
   }),
   node: null,
 
