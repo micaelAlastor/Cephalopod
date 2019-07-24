@@ -35,6 +35,7 @@ var app = express();
 
 ssh = {};
 localNetwork = {blocks: []};
+pjBeamers = {};
 localNetwork.findNodeById = function (id) {
     let node = null;
     localNetwork.blocks.forEach(function (eachBlock) {
@@ -151,7 +152,7 @@ app.post('/api/pjpoweron', function (req, res) {
     //console.log(node);      // your JSON
     //
 
-    node.beamer.powerOn(function (err) {
+    pjBeamers[node.id].powerOn(function (err) {
         if (err) {
             console.log('error turning on', err);
             return;
@@ -167,7 +168,7 @@ app.post('/api/pjpoweroff', function (req, res) {
     let node = localNetwork.findNodeById(id);
     //console.log(node);      // your JSON
     //
-    node.beamer.powerOff(function (err) {
+    pjBeamers[node.id].powerOff(function (err) {
         if (err) {
             console.log('error turning off', err);
             return;
@@ -222,40 +223,40 @@ const interval = setInterval(function wsPing() {
 
 const netPingInterval = setInterval(function netPingFunc() {
     localNetwork.blocks.forEach(function eachBlock(block) {
-        if (block.nodestype === "pc") {
 
-            block.awps.forEach(function eachAWP(awp) {
-                awp.nodes.forEach(function eachPC(pcNode) {
-                    netPingSession.pingHost(pcNode.ip, function (error, target) {
-                        if (error)
-                            if (error instanceof netPing.RequestTimedOutError) {
-                                console.log(target);
-                                pcNode.enabled = false;
-                            } else
-                                console.log(target + ": " + error.toString());
-                        else {
-                            pcNode.enabled = true;
-                            console.log(target + ": Alive");
-                        }
-                        wss.clients.forEach(function each(ws) {
-                            ws.send(JSON.stringify(pcNode));
-                        });
+
+        block.awps.forEach(function eachAWP(awp) {
+            awp.nodes.forEach(function eachPC(nodeData) {
+                netPingSession.pingHost(nodeData.ip, function (error, target) {
+                    if (error)
+                        if (error instanceof netPing.RequestTimedOutError) {
+                            console.log(target);
+                            nodeData.enabled = false;
+                        } else
+                            console.log(target + ": " + error.toString());
+                    else {
+                        nodeData.enabled = true;
+                        console.log(target + ": Alive");
+                    }
+                    wss.clients.forEach(function each(ws) {
+                        ws.send(JSON.stringify(nodeData));
                     });
-                })
-            })
+                });
+            });
+        });
 
 
-        } else {
-            block.awps.forEach(function eachAWP(awp) {
+        block.awps.forEach(function eachAWP(awp) {
+            if (awp.nodestype === 'pj') {
                 awp.nodes.forEach(function eachPJ(pjNode) {
-                    /**
-                     Four possible power states:
-                     * 0 /    pjlink.POWER.OFF
-                     * 1 /    pjlink.POWER.ON
-                     * 2 /    pjlink.POWER.COOLING_DOWN
-                     * 3 /    pjlink.POWER.WARMING_UP
-                     **/
-                    pjNode.beamer.getPowerState(function (err, state) {
+
+                    /*Four possible power states:
+                    * 0 /    pjlink.POWER.OFF
+                    * 1 /    pjlink.POWER.ON
+                    * 2 /    pjlink.POWER.COOLING_DOWN
+                    * 3 /    pjlink.POWER.WARMING_UP*/
+
+                    pjBeamers[pjNode.id].getPowerState(function (err, state) {
                         if (err) {
                             console.log(err);
                             return;
@@ -265,12 +266,13 @@ const netPingInterval = setInterval(function netPingFunc() {
                             ws.send(JSON.stringify(pjNode));
                         });
                         console.log('power', err, state);
-                    });
+                    })
                 })
-            })
-        }
+            }
+        })
+
     })
-}, 10000);
+}, 3000);
 
 
 module.exports = app;

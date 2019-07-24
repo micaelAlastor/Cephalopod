@@ -1,1 +1,9 @@
-{{yield}}
+<div class="nodeField">
+  <Input @value={{this.node.name}} @change={{action 'saveNode'}}/>
+</div>
+<div class="nodeField">
+  <Input @value={{this.node.ip}} @change={{action 'saveNode'}} @pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$"/>
+</div>
+<div class="nodeFieldRadonly">
+  <span> {{this.node.mac}} </span>
+</div>

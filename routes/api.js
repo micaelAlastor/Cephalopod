@@ -70,7 +70,7 @@ const API = module.exports.API = {
             let changedBlock;
             let data = req.body.cblock;
             if (data) {
-                changedBlock = localNetwork.blocks.find(function(block){
+                changedBlock = localNetwork.blocks.find(function (block) {
                     return block.id === req.params._id;
                 });
                 changedBlock.name = data.name;
@@ -118,8 +118,13 @@ const API = module.exports.API = {
             if (newNode) {
                 newNode.id = uuidv4();
                 let awp = findAwpForNode(newNode);
-                if (awp)
+                if (awp) {
+                    if (awp.nodestype === 'pj') {
+                        pjBeamers[newNode.id] = new pjlink(newNode.ip, 4352, "");
+                    }
                     awp.nodes.push(newNode);
+                }
+
             }
             res.send({cnodes: newNode});
         },

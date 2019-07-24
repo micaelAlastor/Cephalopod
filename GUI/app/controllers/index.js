@@ -2,6 +2,12 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   wsMessageHandler(event) {
-    this.get('model').acceptNodeChanges(JSON.parse(event.data));
+    let data = JSON.parse(event.data);
+    let node = this.store.peekRecord('cnode', data.id);
+    if (node){
+      node.set('enabled', data.enabled);
+      node.set('powerstate', data.powerstate);
+    }
+    //this.store.push()
   }
 });

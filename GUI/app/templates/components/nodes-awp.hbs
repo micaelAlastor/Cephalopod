@@ -1,0 +1,10 @@
+<div class="block-name">{{awp.name}}</div>
+<div class="block-pane">
+  {{#each awp.nodes as |node|}}
+    {{#if this.awp.pc}}
+      <NodePc @node={{node}}/>
+    {{else if this.awp.pj}}
+      <NodePj @node={{node}}/>
+    {{/if}}
+  {{/each}}
+</div>

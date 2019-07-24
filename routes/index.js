@@ -17,6 +17,7 @@ router.post('/api/cblocks', api.blocks.postBlock);
 router.put('/api/cblocks/:_id', api.blocks.putBlock);
 router.post('/api/cawps', api.awps.postAwp);
 router.put('/api/cawps/:_id', api.awps.putAwp);
+//router.get('/api/cnodes/:_id', api.nodes.getNode);
 router.post('/api/cnodes', api.nodes.postNode);
 router.put('/api/cnodes/:_id', api.nodes.putNode);
 

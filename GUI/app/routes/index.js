@@ -1,5 +1,4 @@
 import Route from '@ember/routing/route';
-import Scheme from '../models/scheme';
 import {inject as service} from '@ember/service'
 import {on} from '@ember/object/evented';
 
@@ -46,16 +45,7 @@ export default Route.extend({
     console.log(`On close event has been called: ${event}`);
   },
 
-  processModel(json) {
-    let scheme = Scheme.create({});
-    scheme.acceptJson(json);
-    return scheme;
-  },
-
   model() {
-    let self = this;
-    return $.getJSON('/api/network').then(function (response) {
-      return self.processModel(response);
-    });
+    return this.store.findAll('cblock');
   }
 });
