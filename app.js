@@ -70,113 +70,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+//MAIN ROUTER. All API requests are processed here
 app.use('/', indexRouter);
 
-
-//pc api calls
-app.post('/api/wakeup', function (req, res) {
-    console.log('wake on lan: ');
-    let node = req.body;
-    console.log(node);      // your JSON
-    //console.log('ssh is ', ssh);      // your JSON
-    // {address: node.ip}
-    wol.wake(node.mac);
-    //
-    res.json(node);
-});
-
-app.post('/api/block/wakeup', function (req, res) {
-    console.log('wake block on lan: ');
-
-    let foundBlock = localNetwork.blocks.find(function (aBlock) {
-        return aBlock.id === req.body.id;
-    });
-
-    foundBlock.nodes.forEach(function (sleepyNode) {
-        wol.wake(sleepyNode.mac);
-    });
-    //
-    res.json(foundBlock);
-});
-
-app.post('/api/reboot', function (req, res) {
-    console.log('reboot: ');
-    let node = req.body;
-    console.log(node);      // your JSON
-    //
-    sequest('fma@' + node.ip,
-        {
-            command: 'sudo shutdown --reboot now "System goes on reboot now"',
-            username: 'fma',
-            password: 'lordofether'
-        },
-        function (e, stdout) {
-            if (e) {
-                console.log(e);
-                //throw e;
-            }
-            console.log(stdout.split('\n'))
-        });
-    //
-    res.json(node);
-});
-
-app.post('/api/shutdown', function (req, res) {
-    console.log('shutdown: ');
-    let node = req.body;
-    console.log(node);      // your JSON
-    //
-    sequest('fma@' + node.ip,
-        {
-            command: 'sudo shutdown -P now "System goes down now"',
-            username: 'fma',
-            password: 'lordofether'
-        },
-        function (e, stdout) {
-            if (e) {
-                console.log(e);
-                //throw e;
-            }
-            console.log(stdout.split('\n'))
-        });
-    //
-    res.json(node);
-});
-
-//pjlink api calls
-
-app.post('/api/pjpoweron', function (req, res) {
-    console.log('pjlink poweron: ');
-    let id = req.body.id;
-    let node = localNetwork.findNodeById(id);
-    //console.log(node);      // your JSON
-    //
-
-    pjBeamers[node.id].powerOn(function (err) {
-        if (err) {
-            console.log('error turning on', err);
-            return;
-        }
-    });
-    //
-    res.json(node);
-});
-
-app.post('/api/pjpoweroff', function (req, res) {
-    console.log('shutdown: ');
-    let id = req.body.id;
-    let node = localNetwork.findNodeById(id);
-    //console.log(node);      // your JSON
-    //
-    pjBeamers[node.id].powerOff(function (err) {
-        if (err) {
-            console.log('error turning off', err);
-            return;
-        }
-    });
-    //
-    res.json(node);
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -223,10 +119,11 @@ const interval = setInterval(function wsPing() {
 
 const netPingInterval = setInterval(function netPingFunc() {
     localNetwork.blocks.forEach(function eachBlock(block) {
-
-
         block.awps.forEach(function eachAWP(awp) {
-            awp.nodes.forEach(function eachPC(nodeData) {
+            awp.nodes.forEach(function eachNode(nodeData) {
+                //for each and every node
+
+                //net-ping
                 netPingSession.pingHost(nodeData.ip, function (error, target) {
                     if (error)
                         if (error instanceof netPing.RequestTimedOutError) {
@@ -242,35 +139,33 @@ const netPingInterval = setInterval(function netPingFunc() {
                         ws.send(JSON.stringify(nodeData));
                     });
                 });
-            });
-        });
 
-
-        block.awps.forEach(function eachAWP(awp) {
-            if (awp.nodestype === 'pj') {
-                awp.nodes.forEach(function eachPJ(pjNode) {
-
+                //pjlink requests for enabled projectors
+                if (awp.nodestype === 'pj' && nodeData.enabled) {
                     /*Four possible power states:
                     * 0 /    pjlink.POWER.OFF
                     * 1 /    pjlink.POWER.ON
                     * 2 /    pjlink.POWER.COOLING_DOWN
                     * 3 /    pjlink.POWER.WARMING_UP*/
-
-                    pjBeamers[pjNode.id].getPowerState(function (err, state) {
-                        if (err) {
-                            console.log(err);
-                            return;
-                        }
-                        pjNode.powerState = state;
-                        wss.clients.forEach(function each(ws) {
-                            ws.send(JSON.stringify(pjNode));
-                        });
-                        console.log('power', err, state);
-                    })
-                })
-            }
-        })
-
+                    let nodeBeamer = pjBeamers[nodeData.id];
+                    if(nodeBeamer) {
+                        pjBeamers[nodeData.id].getPowerState(function (err, state) {
+                            if (err) {
+                                console.log(err);
+                                return;
+                            }
+                            nodeData.powerState = state;
+                            wss.clients.forEach(function each(ws) {
+                                ws.send(JSON.stringify(nodeData));
+                            });
+                            console.log('power', err, state);
+                        })
+                    } else {
+                        console.log('there is no beamer for:' + nodeData);
+                    }
+                }
+            });
+        });
     })
 }, 3000);
 

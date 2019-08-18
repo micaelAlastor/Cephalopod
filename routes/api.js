@@ -30,6 +30,7 @@ const API = module.exports.API = {
         }
     },
     blocks: {
+        //reading network.json
         getBlocks: function (req, res) {
             let rawdata = fs.readFileSync('network.json');
             let networkScheme = {ssh: {}, blocks: []};
