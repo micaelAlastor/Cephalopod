@@ -6,7 +6,9 @@ const find = require('local-devices');
 const fs = require('fs');
 const uuidv4 = require('uuid/v4');
 
+
 function findAwpForNode(node) {
+    let localNetwork = res.app.locals.localNetwork;
     let block = localNetwork.blocks.find(function (block) {
         return block.id === node.block;
     });
@@ -23,6 +25,7 @@ const API = module.exports.API = {
         },
 
         postConfig: function (req, res) {
+            let localNetwork = res.app.locals.localNetwork;
             let json = JSON.stringify(localNetwork); //convert it back to json
             fs.writeFile('network.json', json, 'utf8', function () {
                 console.log('network.json is updated')
@@ -32,6 +35,8 @@ const API = module.exports.API = {
     blocks: {
         //reading network.json
         getBlocks: function (req, res) {
+            let ssh = res.app.locals.ssh;
+            let localNetwork = res.app.locals.localNetwork;
             let rawdata = fs.readFileSync('network.json');
             let networkScheme = {ssh: {}, blocks: []};
             try {
@@ -58,6 +63,7 @@ const API = module.exports.API = {
         },
 
         postBlock: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
             let newBlock = req.body.cblock;
             if (newBlock) {
                 newBlock.id = uuidv4();
@@ -68,6 +74,7 @@ const API = module.exports.API = {
         },
 
         putBlock: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
             let changedBlock;
             let data = req.body.cblock;
             if (data) {
@@ -83,6 +90,7 @@ const API = module.exports.API = {
 
     awps: {
         postAwp: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
             let newAwp = req.body.cawp;
             if (newAwp) {
                 newAwp.id = uuidv4();
@@ -97,6 +105,7 @@ const API = module.exports.API = {
         },
 
         putAwp: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
             let changedAwp;
             let data = req.body.cawp;
             if (data) {
@@ -115,10 +124,12 @@ const API = module.exports.API = {
     },
     nodes: {
         postNode: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
+            let pjBeamers = res.app.locals.pjBeamers;
             let newNode = req.body.cnode;
             if (newNode) {
                 newNode.id = uuidv4();
-                let awp = findAwpForNode(newNode);
+                let awp = findAwpForNode(newNode, localNetwork);
                 if (awp) {
                     if (awp.nodestype === 'pj') {
                         pjBeamers[newNode.id] = new pjlink(newNode.ip, 4352, "");
@@ -130,10 +141,11 @@ const API = module.exports.API = {
             res.send({cnodes: newNode});
         },
         putNode: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
             let changedNode;
             let data = req.body.cnode;
             if (data) {
-                let awp = findAwpForNode(data);
+                let awp = findAwpForNode(data, localNetwork);
                 if (awp) {
                     changedNode = awp.nodes.find(function (node) {
                         return node.id === req.params._id;

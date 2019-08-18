@@ -33,9 +33,10 @@ var app = express();
 //app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 //end of ember..
 
-ssh = {};
-localNetwork = {blocks: []};
-pjBeamers = {};
+let ssh = app.locals.ssh = {};
+let localNetwork = app.locals.localNetwork = {blocks: []};
+let pjBeamers = app.locals.pjBeamers = {};
+
 localNetwork.findNodeById = function (id) {
     let node = null;
     localNetwork.blocks.forEach(function (eachBlock) {

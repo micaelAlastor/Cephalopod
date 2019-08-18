@@ -3,6 +3,7 @@ var router = express.Router();
 
 var api = require('./api').API;
 
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   //res.render('index', { title: 'Express' });
@@ -94,6 +95,8 @@ router.post('/api/shutdown', function (req, res) {
 //pjlink api calls
 
 router.post('/api/pjpoweron', function (req, res) {
+	let localNetwork = res.app.locals.localNetwork;
+	let pjBeamers = res.app.locals.pjBeamers;
 	console.log('pjlink poweron: ');
 	let id = req.body.id;
 	let node = localNetwork.findNodeById(id);
@@ -111,6 +114,8 @@ router.post('/api/pjpoweron', function (req, res) {
 });
 
 router.post('/api/pjpoweroff', function (req, res) {
+	let localNetwork = res.app.locals.localNetwork;
+	let pjBeamers = res.app.locals.pjBeamers;
 	console.log('shutdown: ');
 	let id = req.body.id;
 	let node = localNetwork.findNodeById(id);
