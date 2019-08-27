@@ -5,6 +5,11 @@ const find = require('local-devices');
 //
 const fs = require('fs');
 const uuidv4 = require('uuid/v4');
+//class model
+const Network = require('../structure').Network;
+const Block = require('../structure').Block;
+const Awp = require('../structure').Awp;
+const Node = require('../structure').Node;
 
 
 function findAwpForNode(node) {
@@ -35,7 +40,6 @@ const API = module.exports.API = {
     blocks: {
         //reading network.json
         getBlocks: function (req, res) {
-            let ssh = res.app.locals.ssh;
             let localNetwork = res.app.locals.localNetwork;
             let rawdata = fs.readFileSync('network.json');
             let networkScheme = {ssh: {}, blocks: []};
@@ -46,31 +50,20 @@ const API = module.exports.API = {
             }
             console.log(networkScheme);
 
-            ssh = networkScheme.ssh;
-            localNetwork.blocks = networkScheme.blocks;
+            //ssh = networkScheme.ssh;
+            localNetwork.acceptData(networkScheme);
 
-            res.json({cblocks: localNetwork.blocks});
-
-            /*localNetwork.blocks.forEach(function (eachBlock) {
-                if (eachBlock.nodestype === "pj") {
-                    eachBlock.nodes.forEach(function (eachProj) {
-                        if (!eachProj.beamer) {
-                            eachProj.beamer = new pjlink(eachProj.ip, 4352, "");
-                        }
-                    })
-                }
-            });*/
+            res.json({cblocks: networkScheme.blocks});
         },
 
         postBlock: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
-            let newBlock = req.body.cblock;
-            if (newBlock) {
-                newBlock.id = uuidv4();
-                newBlock.awps = [];
-                localNetwork.blocks.push(newBlock);
+            let blockData = req.body.cblock;
+            if (blockData) {
+                let newBlock = new Block(blockData);
+                localNetwork.pushBlock(newBlock);
             }
-            res.send({cblocks: newBlock});
+            res.send({cblocks: blockData});
         },
 
         putBlock: function (req, res, next) {
@@ -78,9 +71,7 @@ const API = module.exports.API = {
             let changedBlock;
             let data = req.body.cblock;
             if (data) {
-                changedBlock = localNetwork.blocks.find(function (block) {
-                    return block.id === req.params._id;
-                });
+                changedBlock = localNetwork.findBlockById(req.params._id);
                 changedBlock.name = data.name;
                 res.send({cblocks: changedBlock});
             } else
@@ -91,17 +82,15 @@ const API = module.exports.API = {
     awps: {
         postAwp: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
-            let newAwp = req.body.cawp;
-            if (newAwp) {
-                newAwp.id = uuidv4();
-                newAwp.nodes = [];
-                let block = localNetwork.blocks.find(function (block) {
-                    return block.id === newAwp.block;
-                });
-                if (block)
-                    block.awps.push(newAwp);
+            let awpData = req.body.cawp;
+            if (awpData) {
+                let block = localNetwork.findBlockById(awpData.block);
+                if (block) {
+                    let newAwp = new Awp(awpData);
+                    block.pushAwp(newAwp);
+                }
             }
-            res.send({cawps: newAwp});
+            res.send({cawps: awpData});
         },
 
         putAwp: function (req, res, next) {
@@ -109,12 +98,7 @@ const API = module.exports.API = {
             let changedAwp;
             let data = req.body.cawp;
             if (data) {
-                let block = localNetwork.blocks.find(function (block) {
-                    return block.id === data.block;
-                });
-                changedAwp = block.awps.find(function (awp) {
-                    return awp.id === req.params._id;
-                });
+                changedAwp = localNetwork.findAwpById(awpData.block, awpData.id);
 
                 changedAwp.name = data.name;
                 res.send({cwps: changedAwp});

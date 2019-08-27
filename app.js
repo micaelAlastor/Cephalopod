@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
+const Network = require('./structure').Network;
 
 //icmp ping
 const netPing = require("net-ping");
@@ -34,31 +35,8 @@ var app = express();
 //end of ember..
 
 let ssh = app.locals.ssh = {};
-let localNetwork = app.locals.localNetwork = {blocks: []};
+let localNetwork = app.locals.localNetwork = new Network();
 let pjBeamers = app.locals.pjBeamers = {};
-
-localNetwork.findNodeById = function (id) {
-    let node = null;
-    localNetwork.blocks.forEach(function (eachBlock) {
-        eachBlock.nodes.forEach(function (eachNode) {
-            if (eachNode.id === id) {
-                node = eachNode;
-            }
-        })
-    });
-    return node;
-};
-localNetwork.findNodeByIp = function (ip) {
-    let node = null;
-    localNetwork.blocks.forEach(function (eachBlock) {
-        eachBlock.nodes.forEach(function (eachNode) {
-            if (eachNode.ip === ip) {
-                node = eachNode;
-            }
-        })
-    });
-    return node;
-};
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

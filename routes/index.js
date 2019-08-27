@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var api = require('./api').API;
+const api = require('./api').API;
 
 
 /* GET home page. */
@@ -99,18 +99,17 @@ router.post('/api/pjpoweron', function (req, res) {
 	let pjBeamers = res.app.locals.pjBeamers;
 	console.log('pjlink poweron: ');
 	let id = req.body.id;
-	let node = localNetwork.findNodeById(id);
 	//console.log(node);      // your JSON
 	//
 
-	pjBeamers[node.id].powerOn(function (err) {
+	pjBeamers[id].powerOn(function (err) {
 		if (err) {
 			console.log('error turning on', err);
 			return;
 		}
 	});
 	//
-	res.json(node);
+	res.json(id);
 });
 
 router.post('/api/pjpoweroff', function (req, res) {
@@ -118,17 +117,16 @@ router.post('/api/pjpoweroff', function (req, res) {
 	let pjBeamers = res.app.locals.pjBeamers;
 	console.log('shutdown: ');
 	let id = req.body.id;
-	let node = localNetwork.findNodeById(id);
 	//console.log(node);      // your JSON
 	//
-	pjBeamers[node.id].powerOff(function (err) {
+	pjBeamers[id].powerOff(function (err) {
 		if (err) {
 			console.log('error turning off', err);
 			return;
 		}
 	});
 	//
-	res.json(node);
+	res.json(id);
 });
 
 module.exports = router;
