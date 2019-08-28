@@ -24,7 +24,7 @@ let Node = module.exports.Node = class Node {
 
 //automated workplace (either set of pc or projectors)
 let Awp = module.exports.Awp = class Awp {
-    constructor(awpData) {
+    constructor(awpData, network) {
         this.nodes = [];
         this.name = awpData.name;
         this.block = awpData.block;
@@ -35,7 +35,7 @@ let Awp = module.exports.Awp = class Awp {
             this.id = awpData.id;
             awpData.nodes.forEach(function(nodeData){
                 let newNode = new Node(nodeData);
-                self.pushNode(newNode);
+                self.pushNode(newNode, network);
             })
         }
         //if we create new awp for client request
@@ -44,15 +44,16 @@ let Awp = module.exports.Awp = class Awp {
         }
     }
 
-    pushNode(node) {
+    pushNode(node, network) {
         node.nodestype = this.nodestype;
         this.nodes.push(node);
+        network.pushNode(node);
     }
 };
 
 //block of workplaces
 let Block = module.exports.Block = class Block {
-    constructor(blockData) {
+    constructor(blockData, network) {
         this.awps = [];
         this.name = blockData.name;
 
@@ -61,8 +62,8 @@ let Block = module.exports.Block = class Block {
             let self = this;
             this.id = blockData.id;
             blockData.awps.forEach(function(awpData){
-                let newAwp = new Awp(awpData);
-                self.pushAwp(newAwp);
+                let newAwp = new Awp(awpData, network);
+                self.pushAwp(newAwp, network);
             })
         }
         //if we create new block for client request
@@ -71,8 +72,9 @@ let Block = module.exports.Block = class Block {
         }
     }
 
-    pushAwp(awp) {
+    pushAwp(awp, network) {
         this.awps.push(awp);
+        network.pushAwp(awp);
     }
 };
 
@@ -80,14 +82,17 @@ let Block = module.exports.Block = class Block {
 let Network = module.exports.Network = class LocalNetwork {
     constructor() {
         this.blocks = [];
+        this.awps = [];
+        this.nodes = [];
     }
 
     acceptData(networkData) {
-        let self = this;
+        this.blocks = [];
 
+        let self = this;
         if(networkData) {
             networkData.blocks.forEach(function(blockData){
-                let newBlock = new Block(blockData);
+                let newBlock = new Block(blockData, self);
                 self.pushBlock(newBlock);
             })
         }
@@ -97,19 +102,29 @@ let Network = module.exports.Network = class LocalNetwork {
         this.blocks.push(block);
     }
 
-    findBlockById(id) {
+    pushAwp(awp) {
+        this.awps.push(awp);
+    }
+
+    pushNode(node) {
+        this.nodes.push(node);
+    }
+
+    findBlockById(block_id) {
         return this.blocks.find(function (block) {
-            return block.id === id;
+            return block.id === block_id;
         });
     }
 
-    findAwpById(block_id, awp_id) {
-        let block = this.blocks.find(function (block) {
-            return block.id === block_id;
-        });
-
-        return block.awps.find(function (awp) {
+    findAwpById(awp_id) {
+        return this.awps.find(function (awp) {
             return awp.id === awp_id;
+        });
+    }
+
+    findNodeById(node_id) {
+        return this.nodes.find(function (node) {
+            return node.id === node_id;
         });
     }
 };

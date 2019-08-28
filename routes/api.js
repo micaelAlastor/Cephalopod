@@ -12,16 +12,6 @@ const Awp = require('../structure').Awp;
 const Node = require('../structure').Node;
 
 
-function findAwpForNode(node) {
-    let localNetwork = res.app.locals.localNetwork;
-    let block = localNetwork.blocks.find(function (block) {
-        return block.id === node.block;
-    });
-    let awp = block.awps.find(function (awp) {
-        return awp.id === node.awp;
-    });
-    return awp;
-}
 
 const API = module.exports.API = {
     config: {
@@ -53,17 +43,18 @@ const API = module.exports.API = {
             //ssh = networkScheme.ssh;
             localNetwork.acceptData(networkScheme);
 
-            res.json({cblocks: networkScheme.blocks});
+            res.json({cblocks: localNetwork.blocks});
         },
 
         postBlock: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
             let blockData = req.body.cblock;
+            let newBlock;
             if (blockData) {
-                let newBlock = new Block(blockData);
+                newBlock = new Block(blockData);
                 localNetwork.pushBlock(newBlock);
             }
-            res.send({cblocks: blockData});
+            res.send({cblocks: newBlock});
         },
 
         putBlock: function (req, res, next) {
@@ -83,14 +74,15 @@ const API = module.exports.API = {
         postAwp: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
             let awpData = req.body.cawp;
+            let newAwp;
             if (awpData) {
                 let block = localNetwork.findBlockById(awpData.block);
                 if (block) {
-                    let newAwp = new Awp(awpData);
-                    block.pushAwp(newAwp);
+                    newAwp = new Awp(awpData);
+                    block.pushAwp(newAwp, localNetwork);
                 }
             }
-            res.send({cawps: awpData});
+            res.send({cawps: newAwp});
         },
 
         putAwp: function (req, res, next) {
@@ -98,10 +90,9 @@ const API = module.exports.API = {
             let changedAwp;
             let data = req.body.cawp;
             if (data) {
-                changedAwp = localNetwork.findAwpById(awpData.block, awpData.id);
-
+                changedAwp = localNetwork.findAwpById(req.params._id);
                 changedAwp.name = data.name;
-                res.send({cwps: changedAwp});
+                res.send({cawps: changedAwp});
             } else
                 console.log('Error: no awp data provided');
         }
@@ -110,15 +101,16 @@ const API = module.exports.API = {
         postNode: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
             let pjBeamers = res.app.locals.pjBeamers;
-            let newNode = req.body.cnode;
-            if (newNode) {
-                newNode.id = uuidv4();
-                let awp = findAwpForNode(newNode, localNetwork);
+            let nodeData = req.body.cnode;
+            let newNode;
+            if (nodeData) {
+                let awp = localNetwork.findAwpById(nodeData.awp);
                 if (awp) {
+                    newNode = new Node(nodeData);
+                    awp.pushNode(newNode, localNetwork);
                     if (awp.nodestype === 'pj') {
-                        pjBeamers[newNode.id] = new pjlink(newNode.ip, 4352, "");
+                        pjBeamers[nodeData.id] = new pjlink(nodeData.ip, 4352, "");
                     }
-                    awp.nodes.push(newNode);
                 }
 
             }
@@ -129,7 +121,7 @@ const API = module.exports.API = {
             let changedNode;
             let data = req.body.cnode;
             if (data) {
-                let awp = findAwpForNode(data, localNetwork);
+                let awp = localNetwork.findAwpById(nodeData.awp);
                 if (awp) {
                     changedNode = awp.nodes.find(function (node) {
                         return node.id === req.params._id;
