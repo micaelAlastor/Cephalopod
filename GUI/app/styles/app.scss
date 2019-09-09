@@ -1,3 +1,15 @@
+@import 'ember-resizable';
+
+.sortable-item {
+  transition: all .125s;
+}
+.sortable-item.is-dragging {
+  transition-duration: 0s;
+}
+.block-drag {
+  height: 20px;
+  cursor: grab;
+}
 body {
   background-image: linear-gradient(to bottom left, #6396C3, #4D7493);
   font-family: "PTAstraSans-Regular","PT Sans",sans-serif;

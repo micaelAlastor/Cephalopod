@@ -31,18 +31,6 @@ const API = module.exports.API = {
         //reading network.json
         getBlocks: function (req, res) {
             let localNetwork = res.app.locals.localNetwork;
-            let rawdata = fs.readFileSync('network.json');
-            let networkScheme = {ssh: {}, blocks: []};
-            try {
-                networkScheme = JSON.parse(rawdata);
-            } catch (e) {
-                console.log(e);
-            }
-            console.log(networkScheme);
-
-            //ssh = networkScheme.ssh;
-            localNetwork.acceptData(networkScheme);
-
             res.json({cblocks: localNetwork.blocks});
         },
 
@@ -64,6 +52,7 @@ const API = module.exports.API = {
             if (data) {
                 changedBlock = localNetwork.findBlockById(req.params._id);
                 changedBlock.name = data.name;
+                changedBlock.position = data.position;
                 res.send({cblocks: changedBlock});
             } else
                 console.log('Error: no block data provided');

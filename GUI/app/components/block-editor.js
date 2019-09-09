@@ -2,6 +2,7 @@ import Component from '@ember/component';
 
 export default Component.extend({
   classNames: ['block-editor'],
+  grid: [20, 10],
   actions: {
     saveBlock: function() {
       this.block.save();

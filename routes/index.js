@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const fs = require('fs');
 
 const api = require('./api').API;
 
@@ -21,6 +22,30 @@ router.put('/api/cawps/:_id', api.awps.putAwp);
 //router.get('/api/cnodes/:_id', api.nodes.getNode);
 router.post('/api/cnodes', api.nodes.postNode);
 router.put('/api/cnodes/:_id', api.nodes.putNode);
+
+//load from file
+router.post('/api/reload', function (req, res) {
+	let localNetwork = res.app.locals.localNetwork;
+
+	console.log('reloading scheme from json..');
+	let rawdata = '';
+	try {
+		rawdata = fs.readFileSync('network.json');
+	} catch (e) {
+		console.log(e);
+	}
+	let networkScheme = {ssh: {}, blocks: []};
+	try {
+		networkScheme = JSON.parse(rawdata);
+	} catch (e) {
+		console.log(e);
+	}
+	console.log(networkScheme);
+
+	//ssh = networkScheme.ssh;
+	localNetwork.acceptData(networkScheme);
+	res.json({reloaded: true});
+});
 
 //pc api calls
 router.post('/api/wakeup', function (req, res) {

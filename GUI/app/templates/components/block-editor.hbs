@@ -1,10 +1,16 @@
+
+<div class="block-drag"></div>
 <div class="block-name">
   <Input @value={{this.block.name}} @change={{action 'saveBlock'}}/>
+  <span>{{this.block.position}}</span>
   <button class="config_button" {{action "addAwpPc"}}>Добавить АРМ</button>
   <button class="config_button" {{action "addAwpPj"}}>Добавить проекторы</button>
 </div>
+
 <div class="block-pane">
-  {{#each block.awps as |awp|}}
-    <AwpEditor @awp={{awp}}  @addPc="addPc" @addPj="addPj"/>
-  {{/each}}
+  <ReSizable @width="300" @height="200" @grid={{grid}}>
+    {{#each block.awps as |awp|}}
+      <AwpEditor @awp={{awp}}  @addPc="addPc" @addPj="addPj"/>
+    {{/each}}
+  </ReSizable>
 </div>
