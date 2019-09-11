@@ -3,17 +3,17 @@ import { computed } from '@ember/object';
 
 export default Controller.extend({
   sortedBlocks: computed('model', function() {
-    return this.model.sortBy('position');
+    return this.get('model.blocks').sortBy('position');
   }),
 
   actions: {
     loadConfig: function () {
       let self = this;
-      this.model.forEach(function(eachBlock){
+      this.get('model.blocks').forEach(function(eachBlock){
         eachBlock.unloadRecord();
       });
       $.post('/api/reload', {reload: true}, function (response) {
-        self.get('target').send('refresh');
+        self.send('refreshRoute');
         self.get('notifications').success('Конфигурация сети загружена из файла', {
           autoClear: true
         });
@@ -55,7 +55,17 @@ export default Controller.extend({
         block.set('position', index);
         block.save();
       });
-      Ember.notifyPropertyChange(this, 'model');
+      //Ember.notifyPropertyChange(this, 'model');
+    },
+    blockUp: function (block) {
+      if(block.position > 0) {
+        let blocks = this.get('model.blocks');
+        blocks[block.position - 1].position = block.position;
+        block.position = block.position - 1;
+        block.save();
+        blocks[block.position - 1].save();
+        //Ember.notifyPropertyChange(this, 'model');
+      }
     }
   }
 });

@@ -53,6 +53,8 @@ const API = module.exports.API = {
                 changedBlock = localNetwork.findBlockById(req.params._id);
                 changedBlock.name = data.name;
                 changedBlock.position = data.position;
+                changedBlock.height = data.height;
+                changedBlock.width = data.width;
                 res.send({cblocks: changedBlock});
             } else
                 console.log('Error: no block data provided');
@@ -81,6 +83,9 @@ const API = module.exports.API = {
             if (data) {
                 changedAwp = localNetwork.findAwpById(req.params._id);
                 changedAwp.name = data.name;
+                changedAwp.position = data.position;
+                changedAwp.height = data.height;
+                changedAwp.width = data.width;
                 res.send({cawps: changedAwp});
             } else
                 console.log('Error: no awp data provided');

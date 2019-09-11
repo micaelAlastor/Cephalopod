@@ -3,7 +3,15 @@ import Component from '@ember/component';
 export default Component.extend({
   classNames: ['block-editor'],
   grid: [20, 10],
+  resizeBlock: function(direction, { width: newWidth, height: newHeight }, { width: deltaX, height: deltaY }, element) {
+    this.get('block').set('width', newWidth);
+    this.get('block').set('height', newHeight);
+    console.log('resized');
+  },
   actions: {
+    blockUp: function() {
+      this.send('blockUp', this.get('block'));
+    },
     saveBlock: function() {
       this.block.save();
     },

@@ -4,7 +4,7 @@
   <button class="config_button" {{action "saveConfig"}}>Сохранить</button>
   <button class="config_button" {{action "addBlock"}}>Добавить модуль</button>
   <div class="config-editor-pane">
-    {{#sortable-group tagName="div" onChange=(action "reorderBlocks") as |group|}}
+    {{#sortable-group direction="y" tagName="div" onChange=(action "reorderBlocks") as |group|}}
       {{#each this.sortedBlocks as |block|}}
         {{#sortable-item tagName="div" model=block group=group handle=".block-drag"}}
           <BlockEditor @block={{block}} @addAwpPc="addAwpPc" @addAwpPj="addAwpPj" @addPc="addPc" @addPj="addPj"/>

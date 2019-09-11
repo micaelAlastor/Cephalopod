@@ -6,6 +6,9 @@
 .sortable-item.is-dragging {
   transition-duration: 0s;
 }
+.sortable-item {
+  display: inline-block;
+}
 .block-drag {
   height: 20px;
   cursor: grab;
@@ -94,15 +97,6 @@ body {
 }
 .nodes-block .block-name {
   margin: 0 auto 4px auto;
-}
-
-.block-pane {
-  position: relative;
-  display: inline-block;
-  min-height: 50px;
-  min-width: 200px;
-  padding: 10px;
-  background-color: #466C87;
 }
 
 .context-menu {
@@ -216,6 +210,10 @@ body {
   padding: 0 5px;
 }
 
+.block-editor {
+  margin: 20px 20px;
+}
+
 .block-editor, .awp-editor {
   position: relative;
   display: inline-block;
@@ -232,11 +230,27 @@ body {
   margin: 0 auto 4px auto;
 }
 
+.button_right, .button_left {
+  display: inline-block;
+  height: 20px;
+  width: 30px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.button_right {
+  background-image: url('/assets/images/right20px.png');
+}
+
+.button_left {
+  background-image: url('/assets/images/left20px.png');
+}
+
 .block-pane {
   position: relative;
   display: inline-block;
   min-height: 50px;
   min-width: 200px;
-  padding: 10px;
+  padding: 0;
   background-color: #466C87;
 }

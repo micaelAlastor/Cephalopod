@@ -25,7 +25,9 @@ let Node = module.exports.Node = class Node {
 //automated workplace (either set of pc or projectors)
 let Awp = module.exports.Awp = class Awp {
     constructor(awpData, network) {
-        this.position = 0;
+        this.position = awpData.position;
+        this.height = awpData.height;
+        this.width = awpData.width;
         this.nodes = [];
         this.name = awpData.name;
         this.block = awpData.block;
@@ -64,7 +66,9 @@ let Awp = module.exports.Awp = class Awp {
 //block of workplaces
 let Block = module.exports.Block = class Block {
     constructor(blockData, network) {
-        this.position = 0;
+        this.position = blockData.position;
+        this.height = blockData.height;
+        this.width = blockData.width;
         this.awps = [];
         this.name = blockData.name;
 
