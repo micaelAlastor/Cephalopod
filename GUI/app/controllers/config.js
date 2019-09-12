@@ -2,14 +2,14 @@ import Controller from '@ember/controller';
 import { computed } from '@ember/object';
 
 export default Controller.extend({
-  sortedBlocks: computed('model', function() {
+  /*sortedBlocks: computed('model', function() {
     return this.get('model.blocks').sortBy('position');
-  }),
+  }),*/
 
   actions: {
     loadConfig: function () {
       let self = this;
-      this.get('model.blocks').forEach(function(eachBlock){
+      this.get('model').forEach(function(eachBlock){
         eachBlock.unloadRecord();
       });
       $.post('/api/reload', {reload: true}, function (response) {
@@ -30,6 +30,7 @@ export default Controller.extend({
     },
     addBlock: function () {
       let block = this.store.createRecord('cblock');
+      //this.get('model.blocks').pushObject(block);
       block.save();
     },
     addAwpPc: function (block) {

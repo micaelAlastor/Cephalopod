@@ -19,12 +19,13 @@ const API = module.exports.API = {
             res.json({config: [{id: 1}]});
         },
 
-        postConfig: function (req, res) {
+        saveConfig: function (req, res) {
             let localNetwork = res.app.locals.localNetwork;
             let json = JSON.stringify(localNetwork); //convert it back to json
             fs.writeFile('network.json', json, 'utf8', function () {
                 console.log('network.json is updated')
             });
+            res.json({config: [{id: 1}]});
         }
     },
     blocks: {
@@ -47,15 +48,17 @@ const API = module.exports.API = {
 
         putBlock: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
-            let changedBlock;
+            let changed;
             let data = req.body.cblock;
             if (data) {
-                changedBlock = localNetwork.findBlockById(req.params._id);
-                changedBlock.name = data.name;
-                changedBlock.position = data.position;
-                changedBlock.height = data.height;
-                changedBlock.width = data.width;
-                res.send({cblocks: changedBlock});
+                changed = localNetwork.findBlockById(req.params._id);
+                changed.name = data.name;
+                changed.position = data.position;
+                changed.height = data.height;
+                changed.width = data.width;
+                changed.x = data.x;
+                changed.y = data.y;
+                res.send({cblocks: changed});
             } else
                 console.log('Error: no block data provided');
         }
@@ -78,15 +81,17 @@ const API = module.exports.API = {
 
         putAwp: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
-            let changedAwp;
+            let changed;
             let data = req.body.cawp;
             if (data) {
-                changedAwp = localNetwork.findAwpById(req.params._id);
-                changedAwp.name = data.name;
-                changedAwp.position = data.position;
-                changedAwp.height = data.height;
-                changedAwp.width = data.width;
-                res.send({cawps: changedAwp});
+                changed = localNetwork.findAwpById(req.params._id);
+                changed.name = data.name;
+                changed.position = data.position;
+                changed.height = data.height;
+                changed.width = data.width;
+                changed.x = data.x;
+                changed.y = data.y;
+                res.send({cawps: changed});
             } else
                 console.log('Error: no awp data provided');
         }

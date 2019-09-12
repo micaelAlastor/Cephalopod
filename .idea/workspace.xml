@@ -2,17 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1d5b56b-4fa9-4e1e-a143-ffa762c04f59" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/GUI/public/assets/images/left20px.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GUI/public/assets/images/right20px.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/app/components/drag-handle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/app/components/draggable-dropzone.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/app/services/draggable-object.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/app/templates/components/drag-handle.hbs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/GUI/app/templates/components/draggable-dropzone.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/app/components/awp-editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/components/awp-editor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/components/block-editor.js" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/components/block-editor.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/controllers/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/controllers/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/app/models/cawp.js" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/models/cawp.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/models/cblock.js" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/models/cblock.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/routes/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/routes/config.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/styles/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/styles/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/GUI/app/templates/config.hbs" beforeDir="false" afterPath="$PROJECT_DIR$/GUI/app/templates/config.hbs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/network.json" beforeDir="false" afterPath="$PROJECT_DIR$/network.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/structure.js" beforeDir="false" afterPath="$PROJECT_DIR$/structure.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/node_modules/" />
@@ -29,42 +37,30 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/structure.js">
+        <entry file="file://$PROJECT_DIR$/GUI/app/styles/app.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="975">
-              <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
+            <state relative-caret-position="690">
+              <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/api.js">
+        <entry file="file://$PROJECT_DIR$/GUI/app/services/draggable-object.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1155">
-              <caret line="77" selection-start-line="77" selection-end-line="77" />
+            <state relative-caret-position="300">
+              <caret line="20" column="64" lean-forward="true" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GUI/app/routes/config.js">
+        <entry file="file://$PROJECT_DIR$/GUI/app/components/draggable-dropzone.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="469">
+              <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
               <folding>
                 <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/GUI/app/controllers/config.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="484">
-              <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -73,17 +69,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GUI/app/templates/config.hbs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
+            <state relative-caret-position="150">
+              <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="27" />
             </state>
           </provider>
         </entry>
@@ -91,26 +78,59 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/GUI/app/components/block-editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
+            <state relative-caret-position="450">
+              <caret line="30" column="54" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="54" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GUI/app/styles/app.scss">
+        <entry file="file://$PROJECT_DIR$/GUI/app/components/awp-editor.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3555">
-              <caret line="237" column="30" selection-start-line="237" selection-start-column="30" selection-end-line="237" selection-end-column="30" />
+            <state relative-caret-position="135">
+              <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+              <folding>
+                <element signature="e#0#41#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/GUI/app/models/cblock.js">
+        <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
-              <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+              <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="157" selection-start-line="9" selection-start-column="148" selection-end-line="9" selection-end-column="157" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/routes/api.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="21" column="18" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/routes/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="240">
+              <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -136,6 +156,10 @@
       <find>beamers</find>
       <find>findAwpById</find>
       <find>JSON.st</find>
+      <find>block-editor</find>
+      <find>config-ed</find>
+      <find>block</find>
+      <find>awp-editor</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -147,8 +171,6 @@
         <option value="$PROJECT_DIR$/GUI/app/components/node-editor.js" />
         <option value="$PROJECT_DIR$/GUI/app/components/pc-editor.js" />
         <option value="$PROJECT_DIR$/GUI/app/templates/components/pc-editor.hbs" />
-        <option value="$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs" />
-        <option value="$PROJECT_DIR$/GUI/app/components/awp-editor.js" />
         <option value="$PROJECT_DIR$/GUI/app/routes/index.js" />
         <option value="$PROJECT_DIR$/GUI/app/templates/index.hbs" />
         <option value="$PROJECT_DIR$/GUI/app/controllers/index.js" />
@@ -161,21 +183,29 @@
         <option value="$PROJECT_DIR$/routes/structure.js" />
         <option value="$PROJECT_DIR$/app.js" />
         <option value="$PROJECT_DIR$/GUI/app/models/cnode.js" />
-        <option value="$PROJECT_DIR$/GUI/app/models/cawp.js" />
         <option value="$PROJECT_DIR$/GUI/app/templates/config1.hbs" />
         <option value="$PROJECT_DIR$/network.json" />
-        <option value="$PROJECT_DIR$/routes/index.js" />
         <option value="$PROJECT_DIR$/GUI/app/initializers/inject-notifications.js" />
         <option value="$PROJECT_DIR$/GUI/app/styles/app.css" />
-        <option value="$PROJECT_DIR$/GUI/app/templates/config.hbs" />
-        <option value="$PROJECT_DIR$/GUI/app/styles/app.scss" />
-        <option value="$PROJECT_DIR$/routes/api.js" />
-        <option value="$PROJECT_DIR$/structure.js" />
+        <option value="$PROJECT_DIR$/GUI/app/components/draggable-one.js" />
+        <option value="$PROJECT_DIR$/GUI/app/templates/components/draggable-one.hbs" />
+        <option value="$PROJECT_DIR$/GUI/app/components/draggable-item.js" />
         <option value="$PROJECT_DIR$/GUI/app/models/cblock.js" />
+        <option value="$PROJECT_DIR$/GUI/app/components/drag-handle.js" />
+        <option value="$PROJECT_DIR$/GUI/app/models/cawp.js" />
+        <option value="$PROJECT_DIR$/structure.js" />
         <option value="$PROJECT_DIR$/GUI/app/routes/config.js" />
-        <option value="$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs" />
-        <option value="$PROJECT_DIR$/GUI/app/components/block-editor.js" />
+        <option value="$PROJECT_DIR$/GUI/app/templates/config.hbs" />
         <option value="$PROJECT_DIR$/GUI/app/controllers/config.js" />
+        <option value="$PROJECT_DIR$/GUI/app/services/draggable-object.js" />
+        <option value="$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs" />
+        <option value="$PROJECT_DIR$/GUI/app/components/block-editor.js" />
+        <option value="$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs" />
+        <option value="$PROJECT_DIR$/GUI/app/components/draggable-dropzone.js" />
+        <option value="$PROJECT_DIR$/GUI/app/styles/app.scss" />
+        <option value="$PROJECT_DIR$/GUI/app/components/awp-editor.js" />
+        <option value="$PROJECT_DIR$/routes/api.js" />
+        <option value="$PROJECT_DIR$/routes/index.js" />
       </list>
     </option>
   </component>
@@ -215,6 +245,20 @@
               <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="controllers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="models" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
@@ -222,7 +266,36 @@
               <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
               <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="routes" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="services" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="styles" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="$PROJECT_DIR$" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="GUI" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="app" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="templates" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="components" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
             <path>
               <item name="Cephalopod" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
@@ -315,7 +388,10 @@
       <workItem from="1568040773248" duration="7247000" />
       <workItem from="1568060426060" duration="1638000" />
       <workItem from="1568098740582" duration="8348000" />
-      <workItem from="1568185060315" duration="595000" />
+      <workItem from="1568185060315" duration="3562000" />
+      <workItem from="1568218731378" duration="5469000" />
+      <workItem from="1568234378076" duration="5063000" />
+      <workItem from="1568263626231" duration="15116000" />
     </task>
     <task id="LOCAL-00001" summary="now we can edit modules, workplaces and nodes">
       <created>1563896390984</created>
@@ -373,11 +449,18 @@
       <option name="project" value="LOCAL" />
       <updated>1568026898131</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="sortable end">
+      <created>1568187056973</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1568187056973</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="112638000" />
+    <option name="totallyTimeSpent" value="141253000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -414,7 +497,8 @@
     <MESSAGE value="class based logic works somehow now" />
     <MESSAGE value="at least I fixed basic config functions" />
     <MESSAGE value="config is resizeable and sortable atm" />
-    <option name="LAST_COMMIT_MESSAGE" value="config is resizeable and sortable atm" />
+    <MESSAGE value="sortable end" />
+    <option name="LAST_COMMIT_MESSAGE" value="sortable end" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -534,13 +618,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/components/awp-editor.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/pj-editor.hbs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -596,30 +673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/models/cawp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/components/node-pc.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="19" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/GUI/app/routes/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -657,9 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/network.json">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/network.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -667,79 +717,158 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/draggable-one.hbs" />
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/draggable-one.js" />
+    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/draggable-dropzone.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/structure.js">
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/node-pc.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="975">
-          <caret line="65" column="21" selection-start-line="65" selection-start-column="21" selection-end-line="65" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1155">
-          <caret line="77" selection-start-line="77" selection-end-line="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/routes/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+        <state relative-caret-position="285">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="19" selection-start-column="8" selection-end-line="21" selection-end-column="19" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/templates/config.hbs">
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/draggable-item.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="8" selection-start-line="13" selection-start-column="8" selection-end-line="13" selection-end-column="8" />
+        <state relative-caret-position="60">
+          <caret line="4" column="39" lean-forward="true" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="24" selection-start-line="2" selection-start-column="24" selection-end-line="2" selection-end-column="24" />
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/drag-handle.hbs">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/components/block-editor.js">
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/drag-handle.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/GUI/app/styles/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3555">
-          <caret line="237" column="30" selection-start-line="237" selection-start-column="30" selection-end-line="237" selection-end-column="30" />
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GUI/app/models/cblock.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="49" selection-start-line="8" selection-start-column="49" selection-end-line="8" selection-end-column="49" />
+        <state relative-caret-position="105">
+          <caret line="7" selection-start-line="7" selection-end-line="10" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/structure.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-465">
+          <caret line="31" column="32" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/models/cawp.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/routes/config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="20" lean-forward="true" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/GUI/app/controllers/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="51" column="36" selection-start-line="51" selection-start-column="36" selection-end-line="51" selection-end-column="36" />
+        <state relative-caret-position="120">
+          <caret line="8" column="12" lean-forward="true" selection-start-line="8" selection-start-column="12" selection-end-line="9" selection-end-column="29" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/network.json">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/templates/config.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="4" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/block-editor.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="25" lean-forward="true" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/services/draggable-object.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="64" lean-forward="true" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/draggable-dropzone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/block-editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="30" column="54" selection-start-line="30" selection-start-column="53" selection-end-line="30" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/styles/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="690">
+          <caret line="46" column="21" selection-start-line="46" selection-start-column="21" selection-end-line="46" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/templates/components/awp-editor.hbs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="157" selection-start-line="9" selection-start-column="148" selection-end-line="9" selection-end-column="157" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/GUI/app/components/awp-editor.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="15" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding>
+            <element signature="e#0#41#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="21" column="18" selection-start-line="21" selection-start-column="8" selection-end-line="21" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="53" selection-start-line="16" selection-start-column="53" selection-end-line="16" selection-end-column="53" />
         </state>
       </provider>
     </entry>

@@ -5,6 +5,8 @@ import {computed} from '@ember/object';
 export default Model.extend({
   name: DS.attr('string', {defaultValue: 'module'}),
   position: DS.attr('number', {defaultValue: 0}),
+  x: DS.attr('number', {defaultValue: 300}),
+  y: DS.attr('number', {defaultValue: 300}),
   width: DS.attr('number', {defaultValue: 420}),
   height: DS.attr('number', {defaultValue: 200}),
   nodestype: DS.attr('string', {defaultValue: 'pc'}),

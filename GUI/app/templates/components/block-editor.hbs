@@ -1,16 +1,14 @@
-
-<div class="block-drag"></div>
+<DragHandle @onStartDrag={{action "makeDraggable"}} @onStopDrag={{action "makeStill"}}></DragHandle>
 <div class="block-name">
   <Input @value={{this.block.name}} @change={{action 'saveBlock'}}/>
-  <button class="config_button button_left" {{action "blockUp"}}></button>
-  <span>{{this.block.position}}</span>
-  <button class="config_button button_right" {{action "blockDown"}}></button>
-  <button class="config_button" {{action "addAwpPc"}}>Добавить АРМ</button>
-  <button class="config_button" {{action "addAwpPj"}}>Добавить проекторы</button>
+  <button class="config_button" {{action "addAwpPc"}}>+ АРМ</button>
+  <button class="config_button" {{action "addAwpPj"}}>+ проекторы</button>
 </div>
 
-<ReSizable class="block-pane" @width={{this.block.width}} @height={{this.block.height}} @minWidth=420 @minHeight=200 @grid={{grid}} @block={{this.block}} @onResize={{resizeBlock}}>
-  {{#each block.awps as |awp|}}
-    <AwpEditor @awp={{awp}}  @addPc="addPc" @addPj="addPj"/>
-  {{/each}}
+<ReSizable class="block-pane" @width={{this.block.width}} @height={{this.block.height}} @minWidth=420 @minHeight=200 @grid={{grid}} @onResize={{action "resizeBlock"}}>
+  {{#draggable-dropzone}}
+    {{#each block.awps as |awp|}}
+      <AwpEditor @awp={{awp}}  @addPc="addPc" @addPj="addPj"/>
+    {{/each}}
+  {{/draggable-dropzone}}
 </ReSizable>

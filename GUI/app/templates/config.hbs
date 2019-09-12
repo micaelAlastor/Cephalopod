@@ -4,12 +4,10 @@
   <button class="config_button" {{action "saveConfig"}}>Сохранить</button>
   <button class="config_button" {{action "addBlock"}}>Добавить модуль</button>
   <div class="config-editor-pane">
-    {{#sortable-group direction="y" tagName="div" onChange=(action "reorderBlocks") as |group|}}
-      {{#each this.sortedBlocks as |block|}}
-        {{#sortable-item tagName="div" model=block group=group handle=".block-drag"}}
-          <BlockEditor @block={{block}} @addAwpPc="addAwpPc" @addAwpPj="addAwpPj" @addPc="addPc" @addPj="addPj"/>
-        {{/sortable-item}}
+    {{#draggable-dropzone}}
+      {{#each this.model as |block|}}
+        <BlockEditor @content={{block.id}} @block={{block}} @addAwpPc="addAwpPc" @addAwpPj="addAwpPj" @addPc="addPc" @addPj="addPj"/>
       {{/each}}
-    {{/sortable-group}}
+    {{/draggable-dropzone}}
   </div>
 </div>

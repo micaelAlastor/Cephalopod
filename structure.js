@@ -24,19 +24,21 @@ let Node = module.exports.Node = class Node {
 
 //automated workplace (either set of pc or projectors)
 let Awp = module.exports.Awp = class Awp {
-    constructor(awpData, network) {
-        this.position = awpData.position;
-        this.height = awpData.height;
-        this.width = awpData.width;
+    constructor(data, network) {
+        this.position = data.position;
+        this.x = data.x;
+        this.y = data.y;
+        this.height = data.height;
+        this.width = data.width;
         this.nodes = [];
-        this.name = awpData.name;
-        this.block = awpData.block;
-        this.nodestype = awpData.nodestype;
+        this.name = data.name;
+        this.block = data.block;
+        this.nodestype = data.nodestype;
         //if we create data from json so id is already there and awp has its nodes
-        if(awpData.id){
+        if(data.id){
             let self = this;
-            this.id = awpData.id;
-            awpData.nodes.forEach(function(nodeData){
+            this.id = data.id;
+            data.nodes.forEach(function(nodeData){
                 let newNode = new Node(nodeData);
                 self.pushNode(newNode, network);
             })
@@ -65,18 +67,20 @@ let Awp = module.exports.Awp = class Awp {
 
 //block of workplaces
 let Block = module.exports.Block = class Block {
-    constructor(blockData, network) {
-        this.position = blockData.position;
-        this.height = blockData.height;
-        this.width = blockData.width;
+    constructor(data, network) {
+        this.position = data.position;
+        this.x = data.x;
+        this.y = data.y;
+        this.height = data.height;
+        this.width = data.width;
         this.awps = [];
-        this.name = blockData.name;
+        this.name = data.name;
 
         //if we create data from json so id is already there and block has workplaces
-        if(blockData.id){
+        if(data.id){
             let self = this;
-            this.id = blockData.id;
-            blockData.awps.forEach(function(awpData){
+            this.id = data.id;
+            data.awps.forEach(function(awpData){
                 let newAwp = new Awp(awpData, network);
                 self.pushAwp(newAwp, network);
             })

@@ -1,12 +1,13 @@
+<DragHandle @onStartDrag={{action "makeDraggable"}} @onStopDrag={{action "makeStill"}}></DragHandle>
 <div class="block-name">
   <Input @value={{this.awp.name}} @change={{action 'saveAwp'}}/>
   {{#if this.awp.pc}}
-    <button class="config_button" {{action "addPc"}}>Добавить компьютер</button>
+    <button class="config_button" {{action "addPc"}}>+ компьютер</button>
   {{else if this.awp.pj}}
-    <button class="config_button" {{action "addPj"}}>Добавить проектор</button>
+    <button class="config_button" {{action "addPj"}}>+ проектор</button>
   {{/if}}
 </div>
-<div class="block-pane">
+<ReSizable class="block-pane" @width={{this.awp.width}} @height={{this.awp.height}} @minWidth=200 @minHeight=100 @grid={{grid}} @onResize={{action "resizeAWP"}}>
   {{#each awp.nodes as |node|}}
     {{#if this.awp.pc}}
       <PcEditor @node={{node}}/>
@@ -14,4 +15,6 @@
       <PjEditor @node={{node}}/>
     {{/if}}
   {{/each}}
-</div>
+</ReSizable>
+
+

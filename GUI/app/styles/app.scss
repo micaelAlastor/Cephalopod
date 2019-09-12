@@ -1,21 +1,61 @@
 @import 'ember-resizable';
 
-.sortable-item {
-  transition: all .125s;
-}
-.sortable-item.is-dragging {
-  transition-duration: 0s;
-}
-.sortable-item {
-  display: inline-block;
-}
-.block-drag {
+.drag-handle {
   height: 20px;
   cursor: grab;
 }
+
+.config-editor {
+  margin-top: 20px;
+}
+
+.config-editor-pane {
+  position: absolute;
+  left: 20px;
+  top: 50px;
+  right: 20px;
+  bottom: 20px;
+}
+
+.draggableDropzone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.zone-activated {
+  border: 1px solid orange;
+  background-color: rgba(255,165,0, 0.2);
+}
+
+.zone-deactivated {
+  border: 1px transparent;
+}
+
+.block-editor, .awp-editor {
+  position: absolute;
+  display: inline-block;
+  padding-top: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #02425E;
+  color: white;
+  text-align: center;
+}
+
 body {
   background-image: linear-gradient(to bottom left, #6396C3, #4D7493);
   font-family: "PTAstraSans-Regular","PT Sans",sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 .node {
   position: relative;
@@ -202,30 +242,10 @@ body {
   width: 120px;
 }
 
-.config-editor-pane {
-  padding-top: 20px;
-}
-
 .config-editor .block-name {
   padding: 0 5px;
 }
 
-.block-editor {
-  margin: 20px 20px;
-}
-
-.block-editor, .awp-editor {
-  position: relative;
-  display: inline-block;
-  padding-top: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  border: 1px solid black;
-  background-color: #02425E;
-  color: white;
-  text-align: center;
-}
 .nodes-block .block-name {
   margin: 0 auto 4px auto;
 }

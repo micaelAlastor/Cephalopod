@@ -5,7 +5,11 @@ import {computed} from '@ember/object';
 export default Model.extend({
   block: DS.belongsTo('cblock', {async: false}),
   name: DS.attr('string', {defaultValue: 'awp'}),
-  position: DS.attr('number', {defaultValue: '0'}),
+  position: DS.attr('number', {defaultValue: 0}),
+  x: DS.attr('number', {defaultValue: 20}),
+  y: DS.attr('number', {defaultValue: 20}),
+  width: DS.attr('number', {defaultValue: 200}),
+  height: DS.attr('number', {defaultValue: 100}),
   nodestype: DS.attr('string', {defaultValue: 'pc'}),
   pc: computed('nodestype', function() {
     return this.nodestype === 'pc';

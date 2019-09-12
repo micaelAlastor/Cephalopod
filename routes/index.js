@@ -13,7 +13,8 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/api/configs/:_id', api.config.getConfig);
-router.put('/api/configs/:_id', api.config.postConfig);
+router.post('/api/configs/:_id', api.config.saveConfig);
+router.put('/api/configs/:_id', api.config.saveConfig);
 router.get('/api/cblocks', api.blocks.getBlocks);
 router.post('/api/cblocks', api.blocks.postBlock);
 router.put('/api/cblocks/:_id', api.blocks.putBlock);

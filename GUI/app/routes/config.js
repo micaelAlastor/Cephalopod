@@ -11,7 +11,7 @@ export default Route.extend({
   model() {
     let self = this;
     return this.store.findAll('cblock', { reload: true }).then(function(blocks) {
-      return {blocks: blocks};
+      return A(blocks);
     });
   },
 
