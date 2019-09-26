@@ -7,4 +7,10 @@
       <NodePj @node={{node}}/>
     {{/if}}
   {{/each}}
+
+  <div class="block-control">
+    <span class="block-wakeup" role="button" {{action "awpWakeup" awp}}></span>
+    <span class="block-reboot" role="button" {{action "awpReboot" awp}}></span>
+    <span class="block-shutdown" role="button" {{action "awpShutdown" awp}}></span>
+  </div>
 </div>

@@ -1,55 +1,44 @@
 @import 'ember-resizable';
 
-.drag-handle {
-  height: 20px;
-  cursor: grab;
+@import "ember-modal-dialog/ember-modal-structure";
+@import "ember-modal-dialog/ember-modal-appearance";
+
+.ember-modal-dialog {
+  background-color: #02425E;
+  font-family: "PTAstraSans-Regular", "PT Sans", sans-serif;
+  color: white;
+  font-size: 18px;
 }
 
-.config-editor {
-  margin-top: 20px;
+.cephalopod-dialog {
+  background-color: #02425E;
+  margin: 20px;
 }
 
-.config-editor-pane {
-  position: absolute;
-  left: 20px;
-  top: 50px;
-  right: 20px;
-  bottom: 20px;
-}
-
-.draggableDropzone {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.zone-activated {
-  border: 1px solid orange;
-  background-color: rgba(255,165,0, 0.2);
-}
-
-.zone-deactivated {
-  border: 1px transparent;
-}
-
-.block-editor, .awp-editor {
-  position: absolute;
+.cephalopod-dialog button {
   display: inline-block;
-  padding-top: 5px;
+  background-color: #02425E;
+  font-family: "PTAstraSans-Regular", "PT Sans", sans-serif;
+  color: white;
+  font-size: 18px;
+
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  border: 1px solid black;
-  background-color: #02425E;
-  color: white;
-  text-align: center;
+  border: 2px solid white;
+}
+
+.cephalopod-dialog .dialog-text {
+
+}
+
+.cephalopod-dialog .dialog-footer {
+  text-align: right;
 }
 
 body {
   background-image: linear-gradient(to bottom left, #6396C3, #4D7493);
-  font-family: "PTAstraSans-Regular","PT Sans",sans-serif;
+  font-family: "PTAstraSans-Regular", "PT Sans", sans-serif;
   position: absolute;
   top: 0;
   left: 0;
@@ -57,11 +46,13 @@ body {
   width: 100%;
   overflow: hidden;
 }
+
 .node {
   position: relative;
   display: inline-block;
-  height: 58px;
-  width: 108px;
+  height: 70px;
+  width: 160px;
+  margin: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -73,12 +64,16 @@ body {
 .node-pane {
   position: relative;
   margin: 3px;
-  height: 50px;
-  width: 100px;
+  height: 62px;
+  width: 152px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid #02425E;
+}
+
+.node-pj .node-pane {
+  height: 32px;
 }
 
 .node .node-name {
@@ -115,16 +110,16 @@ body {
   visibility: visible;
 }
 
-.node-disabled .node-pane{
+.node-disabled .node-pane {
   background-image: linear-gradient(to bottom left, #510101, #830101);
 }
 
-.node-enabled .node-pane{
+.node-enabled .node-pane {
   background-image: linear-gradient(to bottom left, #069200, #08FE05);
 }
 
 .nodes-block {
-  position: relative;
+  position: absolute;
   display: inline-block;
   padding-top: 5px;
   -webkit-border-radius: 5px;
@@ -135,8 +130,12 @@ body {
   color: white;
   text-align: center;
 }
+
 .nodes-block .block-name {
-  margin: 0 auto 4px auto;
+  margin: 10px auto 4px auto;
+  font-family: "PTAstraSans-Regular", "PT Sans", sans-serif;
+  color: white;
+  font-size: 18px;
 }
 
 .context-menu {
@@ -152,11 +151,13 @@ body {
   height: 40px;
   padding: 4px;
 }
+
 .context-menu__item__label {
   position: relative;
   height: 32px;
   padding: 0 0 0 36px;
 }
+
 .context-menu__item__icon {
   position: absolute;
   display: inline-block;
@@ -165,23 +166,28 @@ body {
   height: 32px;
   width: 32px;
 }
+
 .item_wakeup .context-menu__item__icon {
   background-image: url('/assets/images/wakeup.png');
 }
+
 .item_reboot .context-menu__item__icon {
   background-image: url('/assets/images/reboot.png');
 }
+
 .item_shutdown .context-menu__item__icon {
   background-image: url('/assets/images/shutdown.png');
 }
 
 .block-control {
-  position: relative;
+  position: absolute;
   height: 40px;
   width: 108px;
   padding: 0;
-  margin: 10px auto 0 auto;
+  right: 20px;
+  bottom: 0;
 }
+
 .block-control span {
   position: absolute;
   display: block;
@@ -195,23 +201,77 @@ body {
   border-color: transparent;
   border-radius: 2px;
 }
+
 .block-control span:hover {
   background-color: #5782A3;
 }
+
 .block-wakeup {
   left: 0;
   background-image: url('/assets/images/wakeup.png');
 }
+
 .block-reboot {
   left: 36px;
   background-image: url('/assets/images/reboot.png');
 }
+
 .block-shutdown {
   left: 72px;
   background-image: url('/assets/images/shutdown.png');
 }
 
 /*config*/
+.drag-handle {
+  height: 20px;
+  cursor: grab;
+  background-color: rgba(255, 165, 0, 0.35);
+}
+
+.config-editor {
+  margin-top: 20px;
+}
+
+.config-editor-pane {
+  position: absolute;
+  left: 20px;
+  top: 50px;
+  right: 20px;
+  bottom: 20px;
+}
+
+.draggableDropzone {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.zone-activated {
+  border: 1px solid orange;
+  background-color: rgba(255, 165, 0, 0.2);
+}
+
+.zone-deactivated {
+  border: 1px transparent;
+}
+
+.resizer.bottom, .resizer.right {
+  background-color: rgba(255, 165, 0, 0.2);
+}
+
+.block-editor, .awp-editor {
+  position: absolute;
+  display: inline-block;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid black;
+  color: white;
+  text-align: center;
+}
+
 .config_button {
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -223,31 +283,214 @@ body {
   text-align: center;
 }
 
+.pj_button {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  width: 64px;
+  height: 36px;
+  background: url('/assets/images/pj_32.png') no-repeat center;
+  background-color: #02425E;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+.pj_button:hover {
+  background-color: #12526E;
+}
+
+.pc_button {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  width: 64px;
+  height: 36px;
+  background: url('/assets/images/pc_32.png') no-repeat center;
+  background-color: #02425E;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+.pc_button:hover {
+  background-color: #12526E;
+}
+
+.block-head .pc_button {
+  left: 160px;
+}
+
+.block-head .pj_button {
+  left: 228px;
+}
+
+.block-head .confirm-dialog-button {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  left: 282px;
+  width: 64px;
+  height: 36px;
+}
+
+.awp-head .confirm-dialog-button {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  left: 214px;
+  width: 64px;
+  height: 36px;
+}
+
+.block-head button.block-delete {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: url('/assets/images/delete_24.png') no-repeat center;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+.awp-head .pc_button {
+  left: 160px;
+}
+
+.awp-head .pj_button {
+  left: 160px;
+}
+
+.awp-head button.awp-delete {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: url('/assets/images/delete_24.png') no-repeat center;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid white;
+}
+
+.block-head, .awp-head {
+  background-color: #02425E;
+}
+
+.block-name, .awp-name {
+  position: relative;
+  display: block;
+  width: 350px;
+  height: 40px;
+  margin: auto;
+}
+
+.block-name input, .awp-name input {
+  display: inline-block;
+  position: absolute;
+  top: 2px;
+  left: 5px;
+  width: 150px;
+  height: 30px;
+  font-size: 16px;
+}
+
 .nodeEditor {
   position: relative;
   display: inline-block;
   height: 70px;
   width: 150px;
   padding: 5px;
+  margin: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
   border: 1px solid black;
   background-color: #02425E;
   color: white;
+  text-align: left;
 }
 
-.nodeEditor input {
+.nodeEditor input[type=text] {
   display: inline-block;
   width: 120px;
 }
 
-.config-editor .block-name {
-  padding: 0 5px;
+.nodeEditor input[type=checkbox] {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin: 1px 3px;
 }
 
-.nodes-block .block-name {
-  margin: 0 auto 4px auto;
+.node-head {
+  position: absolute;
+  height: 64px;
+  width: 32px;
+  right: 2px;
+  top: 2px;
+  text-align: left;
+}
+
+.node-body {
+  position: absolute;
+  height: 64px;
+  width: 120px;
+  left: 2px;
+  top: 2px;
+  text-align: left;
+}
+
+.pc-logo {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 26px;
+  background: url('/assets/images/pc_32.png') no-repeat center;
+}
+
+.pj-logo {
+  position: absolute;
+  display: inline-block;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 26px;
+  background: url('/assets/images/pj_32.png') no-repeat center;
+}
+
+.pc-checkbox {
+  position: absolute;
+  display: inline-block;
+  top: 28px;
+  left: 2px;
+}
+
+.node-delete {
+  position: absolute;
+  display: inline-block;
+  top: 50px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background: url('/assets/images/delete_20.png') no-repeat center;
+
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid white;
+}
+
+.config-editor .block-name {
+  padding: 0 5px;
 }
 
 .button_right, .button_left {
@@ -267,10 +510,29 @@ body {
 }
 
 .block-pane {
-  position: relative;
-  display: inline-block;
-  min-height: 50px;
-  min-width: 200px;
+  position: absolute;
+  display: block;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
   padding: 0;
   background-color: #466C87;
+}
+
+.config-editor .block-pane {
+  top: 60px;
+}
+
+.awp-pane {
+  position: absolute;
+  display: block;
+  top: 50px;
+  bottom: 0;
+  width: 100%;
+  padding: 0;
+  background-color: #466C87;
+}
+
+.config-editor .awp-pane {
+  top: 60px;
 }

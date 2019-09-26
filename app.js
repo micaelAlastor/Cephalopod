@@ -11,21 +11,9 @@ const Network = require('./structure').Network;
 const netPing = require("net-ping");
 var netPingSession = netPing.createSession();
 
-//ip to mac
-//const find = require('local-devices');
-
 //web sockets
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({port: 8080});
-
-//ssh
-var sequest = require('sequest');
-
-//wake on lan
-var wol = require('wake_on_lan');
-
-//pjlink
-var pjlink = require('pjlink');
 
 //
 var app = express();

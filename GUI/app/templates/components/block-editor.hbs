@@ -1,11 +1,21 @@
 <DragHandle @onStartDrag={{action "makeDraggable"}} @onStopDrag={{action "makeStill"}}></DragHandle>
-<div class="block-name">
-  <Input @value={{this.block.name}} @change={{action 'saveBlock'}}/>
-  <button class="config_button" {{action "addAwpPc"}}>+ АРМ</button>
-  <button class="config_button" {{action "addAwpPj"}}>+ проекторы</button>
+<div class="block-head">
+  <div class="block-name">
+    <Input @value={{this.block.name}} @change={{action 'saveBlock'}}/>
+    <button class="pc_button" {{action "addAwpPc"}}></button>
+    <button class="pj_button" {{action "addAwpPj"}}></button>
+    {{#confirm-dialog
+      text="Удалить блок?"
+      confirmButton="Удалить"
+      cancelButton="Отмена"
+      dialogClass="cephalopod-dialog"
+    }}
+      <button class="block-delete" {{action "deleteBlock"}}/>
+    {{/confirm-dialog}}
+  </div>
 </div>
 
-<ReSizable class="block-pane" @width={{this.block.width}} @height={{this.block.height}} @minWidth=420 @minHeight=200 @grid={{grid}} @onResize={{action "resizeBlock"}}>
+<ReSizable class="block-pane" @width={{this.block.width}} @height={{this.block.height}} @grid={{grid}} @onResize={{action "resize"}}>
   {{#draggable-dropzone}}
     {{#each block.awps as |awp|}}
       <AwpEditor @awp={{awp}}  @addPc="addPc" @addPj="addPj"/>

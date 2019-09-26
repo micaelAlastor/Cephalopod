@@ -13,6 +13,8 @@ export default Component.extend({
     this.$().css({
       left: `${this.get('awp.x')}px`,
       top: `${this.get('awp.y')}px`,
+      height: `${this.get('awp.height') + 60}px`,
+      width: `${this.get('awp.width')}px`,
     });
   },
 
@@ -45,7 +47,7 @@ export default Component.extend({
   },
 
   actions: {
-    resizeAWP: function (direction, {width: newWidth, height: newHeight}, {width: deltaX, height: deltaY}, element) {
+    resize: function (direction, {width: newWidth, height: newHeight}, {width: deltaX, height: deltaY}, element) {
       this.get('awp').set('width', newWidth);
       this.get('awp').set('height', newHeight);
       console.log('awp resized');
@@ -60,6 +62,9 @@ export default Component.extend({
     },
     saveAwp: function() {
       this.awp.save();
+    },
+    deleteAwp: function(){
+      this.awp.destroyRecord();
     },
     addPc: function () {
       this.sendAction('addPc', this.get('awp'));

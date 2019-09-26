@@ -14,6 +14,8 @@ export default Component.extend({
     this.$().css({
       left: `${this.get('block.x')}px`,
       top: `${this.get('block.y')}px`,
+      height: `${this.get('block.height') + 60}px`,
+      width: `${this.get('block.width')}px`,
     });
   },
 
@@ -48,7 +50,7 @@ export default Component.extend({
   },
 
   actions: {
-    resizeBlock: function (direction, {width: newWidth, height: newHeight}, {width: deltaX, height: deltaY}, element) {
+    resize: function (direction, {width: newWidth, height: newHeight}, {width: deltaX, height: deltaY}, element) {
       this.get('block').set('width', newWidth);
       this.get('block').set('height', newHeight);
       console.log('resized');
@@ -63,6 +65,9 @@ export default Component.extend({
     },
     saveBlock: function () {
       this.block.save();
+    },
+    deleteBlock: function(){
+      this.block.destroyRecord();
     },
     addAwpPc: function () {
       this.sendAction('addAwpPc', this.get('block'));

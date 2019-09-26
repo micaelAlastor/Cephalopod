@@ -1,7 +1,7 @@
 //pjlink
 var pjlink = require('pjlink');
 //ip to mac
-const find = require('local-devices');
+const findLocalDevice = require('local-devices');
 //
 const fs = require('fs');
 const uuidv4 = require('uuid/v4');
@@ -29,7 +29,6 @@ const API = module.exports.API = {
         }
     },
     blocks: {
-        //reading network.json
         getBlocks: function (req, res) {
             let localNetwork = res.app.locals.localNetwork;
             res.json({cblocks: localNetwork.blocks});
@@ -61,6 +60,12 @@ const API = module.exports.API = {
                 res.send({cblocks: changed});
             } else
                 console.log('Error: no block data provided');
+        },
+
+        deleteBlock: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
+            localNetwork.deleteBlockById(req.params._id);
+            res.send({cblocks: {}});
         }
     },
 
@@ -94,21 +99,27 @@ const API = module.exports.API = {
                 res.send({cawps: changed});
             } else
                 console.log('Error: no awp data provided');
+        },
+
+        deleteAwp: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
+            localNetwork.deleteAwpById(req.params._id);
+            res.send({cawps: {}});
         }
     },
     nodes: {
         postNode: function (req, res, next) {
             let localNetwork = res.app.locals.localNetwork;
             let pjBeamers = res.app.locals.pjBeamers;
-            let nodeData = req.body.cnode;
+            let data = req.body.cnode;
             let newNode;
-            if (nodeData) {
-                let awp = localNetwork.findAwpById(nodeData.awp);
+            if (data) {
+                let awp = localNetwork.findAwpById(data.awp);
                 if (awp) {
-                    newNode = new Node(nodeData);
+                    newNode = new Node(data);
                     awp.pushNode(newNode, localNetwork);
                     if (awp.nodestype === 'pj') {
-                        pjBeamers[nodeData.id] = new pjlink(nodeData.ip, 4352, "");
+                        pjBeamers[data.id] = new pjlink(data.ip, localNetwork.settings.pjlinkPort, "");
                     }
                 }
 
@@ -119,27 +130,40 @@ const API = module.exports.API = {
             let localNetwork = res.app.locals.localNetwork;
             let changedNode;
             let data = req.body.cnode;
-            if (data) {
-                let awp = localNetwork.findAwpById(nodeData.awp);
-                if (awp) {
-                    changedNode = awp.nodes.find(function (node) {
-                        return node.id === req.params._id;
-                    });
-                    changedNode.name = data.name;
-                    changedNode.ip = data.ip;
-                    changedNode.mac = data.mac;
-                    changedNode.powerstate = data.powerstate;
 
-                    find(changedNode.ip).then(device => {
-                        changedNode.mac = device.mac;
-                    }).catch(function (error) {
-                        changedNode.mac = '00:00:00:00:00:00';
-                    }).finally(function () {
-                        res.send({cnodes: changedNode});
-                    });
-                }
-            } else
-                console.log('Error: no node data provided');
+            changedNode = localNetwork.findNodeById(req.params._id);
+            changedNode.name = data.name;
+            changedNode.ip = data.ip;
+            changedNode.mac = data.mac;
+            changedNode.powerstate = data.powerstate;
+            changedNode.special = data.special;
+
+            /*findLocalDevice(changedNode.ip).then(device => {
+                if(device)
+                    changedNode.mac = device.mac;
+                else
+                    changedNode.mac = data.mac;
+            }).catch(function (error) {
+                changedNode.mac = data.mac;
+            }).finally(function () {
+                res.send({cnodes: changedNode});
+            });*/
+
+            findLocalDevice(changedNode.ip).then(device => {
+                if(device)
+                    changedNode.mac = device.mac;
+            }, error => {
+                console.log(error);
+                changedNode.mac = data.mac;
+            });
+
+            res.send(data);
         },
+
+        deleteNode: function (req, res, next) {
+            let localNetwork = res.app.locals.localNetwork;
+            localNetwork.deleteNodeById(req.params._id);
+            res.send({cnodes: {}});
+        }
     }
 };

@@ -5,7 +5,6 @@ export default Route.extend({
 
   setupController(controller, blocks) {
     this._super(controller, blocks);
-    console.log('setup controller');
   },
 
   model() {

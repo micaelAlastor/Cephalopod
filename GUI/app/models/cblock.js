@@ -3,7 +3,7 @@ const {Model} = DS;
 import {computed} from '@ember/object';
 
 export default Model.extend({
-  name: DS.attr('string', {defaultValue: 'module'}),
+  name: DS.attr('string', {defaultValue: 'Модуль'}),
   position: DS.attr('number', {defaultValue: 0}),
   x: DS.attr('number', {defaultValue: 300}),
   y: DS.attr('number', {defaultValue: 300}),

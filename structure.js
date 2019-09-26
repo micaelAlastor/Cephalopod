@@ -1,5 +1,14 @@
 const uuidv4 = require('uuid/v4');
 
+//ssh
+var sequest = require('sequest');
+
+//wake on lan
+var wol = require('wake_on_lan');
+
+//pjlink
+var pjlink = require('pjlink');
+
 //node is either single pc or projector
 let Node = module.exports.Node = class Node {
     constructor(nodeData) {
@@ -11,6 +20,7 @@ let Node = module.exports.Node = class Node {
         this.mac = nodeData.mac;
         this.powerstate = nodeData.powerstate;
         this.nodestype = nodeData.nodestype;
+        this.special = nodeData.special;
         //if we create data from json so id is already there
         if(nodeData.id) {
             this.id = nodeData.id;
@@ -19,6 +29,46 @@ let Node = module.exports.Node = class Node {
         else {
             this.id = uuidv4();
         }
+    }
+
+    wakeup() {
+        wol.wake(this.mac);
+    }
+
+    reboot(username, password) {
+        let err;
+        sequest(username + '@' + this.ip,
+            {
+                command: 'sudo shutdown --reboot now "System goes on reboot now"',
+                username: username,
+                password: password
+            },
+            function (e, stdout) {
+                if (e) {
+                    console.log(e);
+                    err = e;
+                }
+                console.log(stdout.split('\n'))
+            });
+        return err;
+    }
+
+    shutdown(username, password) {
+        let err;
+        sequest(username + '@' + this.ip,
+            {
+                command: 'sudo shutdown -P now "System goes down now"',
+                username: username,
+                password: password
+            },
+            function (e, stdout) {
+                if (e) {
+                    console.log(e);
+                    err = e;
+                }
+                console.log(stdout.split('\n'))
+            });
+        return err;
     }
 };
 
@@ -145,6 +195,48 @@ let Network = module.exports.Network = class LocalNetwork {
 
     pushNode(node) {
         this.nodes.push(node);
+    }
+
+    deleteBlockById(id) {
+        for( let i = 0; i < this.blocks.length; i++){
+            if ( this.blocks[i].id === id) {
+                this.blocks.splice(i, 1);
+            }
+        }
+    }
+
+    deleteAwpById(id) {
+        let toDelete = this.findAwpById(id);
+        let parent = this.findBlockById(toDelete.block);
+
+        for( let i = 0; i < parent.awps.length; i++){
+            if ( parent.awps[i].id === id) {
+                parent.awps.splice(i, 1);
+            }
+        }
+
+        for( let i = 0; i < this.awps.length; i++){
+            if ( this.awps[i].id === id) {
+                this.awps.splice(i, 1);
+            }
+        }
+    }
+
+    deleteNodeById(id) {
+        let toDelete = this.findNodeById(id);
+        let parent = this.findAwpById(toDelete.awp);
+
+        for( let i = 0; i < parent.nodes.length; i++){
+            if ( parent.nodes[i].id === id) {
+                parent.nodes.splice(i, 1);
+            }
+        }
+
+        for( let i = 0; i < this.nodes.length; i++){
+            if ( this.nodes[i].id === id) {
+                this.nodes.splice(i, 1);
+            }
+        }
     }
 
     findBlockById(block_id) {

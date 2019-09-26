@@ -1,9 +1,23 @@
-<div class="nodeField">
-  <Input @value={{this.node.name}} @change={{action 'saveNode'}}/>
+<div class="node-head">
+  <span class="pc-logo"></span>
+<!--  <Input @class="pc-checkbox" @type="checkbox" @checked={{this.node.special}} />-->
+  {{#confirm-dialog
+    text="Удалить компьютер из блока?"
+    confirmButton="Удалить"
+    cancelButton="Отмена"
+    dialogClass="cephalopod-dialog"
+  }}
+    <button class="node-delete" {{action "deleteNode"}}/>
+  {{/confirm-dialog}}
 </div>
-<div class="nodeField">
-  <Input @value={{this.node.ip}} @change={{action 'saveNode'}} @pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$"/>
-</div>
-<div class="nodeFieldRadonly">
-  <span> {{this.node.mac}} </span>
+<div class="node-body">
+  <div class="node-field">
+    <Input @value={{this.node.name}} @change={{action 'saveNode'}}/>
+  </div>
+  <div class="node-field">
+    <Input @value={{this.node.ip}} @change={{action 'saveNode'}} @pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}$"/>
+  </div>
+  <div class="node-field">
+    <Input @value={{this.node.mac}} @change={{action 'saveNode'}} @pattern="^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$"/>
+  </div>
 </div>
